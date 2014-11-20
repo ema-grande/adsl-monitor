@@ -1,6 +1,15 @@
 #!/bin/bash
 # Database conf info
 
+deps="mysql"
+for p in $deps; do
+	command -v $p > /dev/null || {
+		echo "This script need \"$p\""
+	exit 1
+	}
+done
+
+
 # DB info
 DBHOST=127.0.0.1
 DBUSER="adsl"
