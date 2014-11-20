@@ -72,7 +72,7 @@ class Model
 
 	public function getDropDate( $today )
 	{
-		$sql= "SELECT * FROM DISCONNECT WHERE time LIKE \"%$today%\" ORDER BY ID DESC;";
+		$sql= "SELECT * FROM DROPS WHERE time LIKE \"%$today%\" ORDER BY ID DESC;";
 		$query = $this->db->prepare($sql);
 		$query->execute();
 
@@ -81,7 +81,7 @@ class Model
 	
 	public function getDropAll()
 	{
-		$sql= "SELECT * FROM DISCONNECT ORDER BY ID DESC;";
+		$sql= "SELECT * FROM DROPS ORDER BY ID DESC;";
 		$query = $this->db->prepare($sql);
 		$query->execute();
 
@@ -90,7 +90,7 @@ class Model
 
 	public function getDropLast()
 	{
-		$sql= "SELECT * FROM DISCONNECT ORDER BY ID DESC LIMIT 1;";
+		$sql= "SELECT * FROM DROPS ORDER BY ID DESC LIMIT 1;";
 		$query = $this->db->prepare($sql);
 		$query->execute();
 
