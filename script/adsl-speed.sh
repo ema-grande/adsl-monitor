@@ -10,10 +10,14 @@ CONF="$(dirname "$0")/conf"
 . $CONF
 
 # TODO: change this
-TMPFILE=$(dirname $0)"/speedtest.tmp"
-ADSLPINGPATH=$(dirname $0)"/adsl-ping.sh"
-SPEEDTESTPATH="/media/raid/netserver/src/script/speedtest_cli.py"
-SPEEDTESTOPT="--simple"
+SCRIPTROOT=$(dirname $0)
+TMPFILE="$SCRIPTROOT/speedtest.tmp"
+ADSLPINGPATH="$SCRIPTROOT/adsl-ping.sh"
+SPEEDTESTPATH="$SCRIPTROOT/speedtest-cli/speedtest_cli.py"
+
+[ ! -e $SPEEDTESTPATH ] && exit  # TODO: log error
+SERVERID=$(python $SPEEDTESTPATH --list | grep -i "telecom italia" | head -n 1 | cut -d")" -f1)
+SPEEDTESTOPT="--simple" #--server $serverID"
 
 ping -c 1 -w 2 $TARGET1 > /dev/null 2> /dev/null
 PI=$?
@@ -24,9 +28,6 @@ if [ $PI -ne 0 ]; then
 	DL="NAN"
 	UP="NAN"
 else
-#	serverID=$(python $SPEEDTESTPATH --list | grep -i "telecom italia" | head -n 1 | cut -d")" -f1)
-#	SPEEDTESTOPT="$SPEEDTESTOPT --server $serverID "
-
 	python $SPEEDTESTPATH $SPEEDTESTOPT > $TMPFILE
 	P=$(cat $TMPFILE | grep Ping | cut -d":" -f2 | cut -d"." -f1 | sed 's/^ //')
 	P="$P ms"
@@ -39,4 +40,4 @@ mysql -h $DBHOST -u $DBUSER -e \
 
 # If speedtest return high ping record some other ping until < 700
 PNUM=$(echo "$P" | cut -d" " -f1)
-[ $PNUM -gt 700 ] && $ADSLPINGPATH &
+[ $PNUM -gt 700 ] && ./$ADSLPINGPATH &
