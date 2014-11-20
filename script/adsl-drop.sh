@@ -11,7 +11,7 @@ CONNFLAG=1		# 1 connect -1 not connect
 
 while [ 1 ]
 do
-	ping -c 1 -w 3 $TARGET1 > /dev/null 2> /dev/null
+	P=$(ping -c 1 -w 3 $TARGET1 | grep -e "time=[0-9]" | sed 's/.*time=//g') # > /dev/null 2> /dev/null
 	PING1=$?
 	ping -c 1 -w 3 $TARGET2 > /dev/null 2> /dev/null
 	PING2=$?
@@ -20,6 +20,11 @@ do
 	then
 		# ADSL up
 		CONNFLAG=1
+
+		# Record ping if higher then x
+		PINT=$(echo $P | cut -d" " -f1 | cut -d"." -f1)
+		[ $PINT -gt $PINGTOP ] && mysql -h $DBHOST -u $DBUSER -e \
+			"INSERT INTO $DBNAME.$PINGTABLE VALUES (NULL, CURRENT_TIMESTAMP, \"$P\");"
 
 		# Record data
 		SEC=$(( SECONDS - STARTCOUNT ))

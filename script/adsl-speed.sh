@@ -5,7 +5,7 @@
 
 # Read conf vars
 CONF="$(dirname "$0")/conf"
-[ ! -e "$CONF" ] && exit	# TODO: error to log
+[ ! -e "$CONF" ] && exit	# TODO: log error
 
 . $CONF
 
@@ -37,7 +37,3 @@ else
 fi
 mysql -h $DBHOST -u $DBUSER -e \
 	"INSERT INTO $DBNAME.$SPEEDTABLE VALUES (NULL, \"$P\", \"$DL\", \"$UP\", CURRENT_TIMESTAMP);"
-
-# If speedtest return high ping record some other ping until < 700
-PNUM=$(echo "$P" | cut -d" " -f1)
-[ $PNUM -gt 700 ] && ./$ADSLPINGPATH &
