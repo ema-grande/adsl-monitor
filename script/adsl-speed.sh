@@ -3,37 +3,40 @@
 
 # TODO: dependencie speedtest_cli 
 
-user="adsl"
-db="adsl"
-table="SPEED"
-target=8.8.8.8
+# Read conf vars
+CONF="$(dirname "$0")/conf"
+[ ! -e "$CONF" ] && exit	# TODO: error to log
 
-tmpFile=$(dirname $0)"/speedtest.tmp"
-adslpingPath=$(dirname $0)"/adsl-ping.sh"
-speedtestPath="/media/raid/netserver/src/script/speedtest_cli.py"
-speedtestOpt="--simple"
+. $CONF
 
-ping -c 1 -w 2 $target > /dev/null 2> /dev/null
-pi=$?
+# TODO: change this
+TMPFILE=$(dirname $0)"/speedtest.tmp"
+ADSLPINGPATH=$(dirname $0)"/adsl-ping.sh"
+SPEEDTESTPATH="/media/raid/netserver/src/script/speedtest_cli.py"
+SPEEDTESTOPT="--simple"
 
-if [ $pi -ne 0 ]; then
+ping -c 1 -w 2 $TARGET1 > /dev/null 2> /dev/null
+PI=$?
+
+if [ $PI -ne 0 ]; then
 	# no connection
-	p="NAN"
-	dl="NAN"
-	up="NAN"
+	P="NAN"
+	DL="NAN"
+	UP="NAN"
 else
-#	serverID=$(python $speedtestPath --list | grep -i "telecom italia" | head -n 1 | cut -d")" -f1)
-#	speedtestOpt="$speedtestOpt --server $serverID "
+#	serverID=$(python $SPEEDTESTPATH --list | grep -i "telecom italia" | head -n 1 | cut -d")" -f1)
+#	SPEEDTESTOPT="$SPEEDTESTOPT --server $serverID "
 
-	python $speedtestPath $speedtestOpt > $tmpFile
-	p=$(cat $tmpFile | grep Ping | cut -d":" -f2 | cut -d"." -f1 | sed 's/^ //')
-	p="$p ms"
-	dl=$(cat $tmpFile | grep Download | cut -d":" -f2 | sed 's/^ //')
-	up=$(cat $tmpFile | grep Upload | cut -d":" -f2 | sed 's/^ //')
-	rm $tmpFile
+	python $SPEEDTESTPATH $SPEEDTESTOPT > $TMPFILE
+	P=$(cat $TMPFILE | grep Ping | cut -d":" -f2 | cut -d"." -f1 | sed 's/^ //')
+	P="$P ms"
+	DL=$(cat $TMPFILE | grep Download | cut -d":" -f2 | sed 's/^ //')
+	UP=$(cat $TMPFILE | grep Upload | cut -d":" -f2 | sed 's/^ //')
+	rm $TMPFILE
 fi
-mysql -u $user -e "INSERT INTO $db.$table VALUES (NULL, \"$p\", \"$dl\", \"$up\", CURRENT_TIMESTAMP);"
+mysql -h $DBHOST -u $DBUSER -e \
+	"INSERT INTO $DBNAME.$SPEEDTABLE VALUES (NULL, \"$P\", \"$DL\", \"$UP\", CURRENT_TIMESTAMP);"
 
 # If speedtest return high ping record some other ping until < 700
-pnum=$(echo "$p" | cut -d" " -f1)
-[ $pnum -gt 700 ] && $adslpingPath &
+PNUM=$(echo "$P" | cut -d" " -f1)
+[ $PNUM -gt 700 ] && $ADSLPINGPATH &

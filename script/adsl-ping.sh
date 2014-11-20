@@ -1,18 +1,19 @@
 #!/bin/bash
 # pingyping
 
-user="adsl"
-db="adsl"
-table="PING"
-target=8.8.8.8
-refresh=2
+# Read conf vars
+CONF="$(dirname "$0")/conf"
+[ ! -e "$CONF" ] && exit	# TODO: error to log
+
+. $CONF
 
 while [[ 1 ]]; do
-	p=$(ping -c 1 $target | grep -e "time=[0-9]" | sed 's/.*time=//g')
-	pint=$(echo $p | cut -d" " -f1 | cut -d"." -f1)
+	P=$(ping -c 1 $TARGET1 | grep -e "time=[0-9]" | sed 's/.*time=//g')
+	PINT=$(echo $P | cut -d" " -f1 | cut -d"." -f1)
 
-	[ $pint -lt 700 ] && break
-	mysql -u $user -e "INSERT INTO $db.$table VALUES (NULL, CURRENT_TIMESTAMP, \"$p\");"
+	[ $PINT -lt 700 ] && break
+	mysql -h $DBHOST -u $DBUSER -e \
+		"INSERT INTO $DBNAME.$PINGTABLE VALUES (NULL, CURRENT_TIMESTAMP, \"$P\");"
 	# Wait some secs we dont want to flood mysql
-	sleep $refresh
+	sleep $REFRESH
 done
