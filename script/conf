@@ -15,7 +15,7 @@ DBHOST=127.0.0.1
 DBUSER="adsl"
 DBNAME="adsl"
 
-# Tables name
+# Tables name - this must be the same as /application/model/model.php
 DROPTABLE="DROPS"
 PINGTABLE="PING"
 SPEEDTABLE="SPEED"
