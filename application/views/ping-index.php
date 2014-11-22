@@ -3,6 +3,7 @@
 	<!-- <button type="button" class="btn btn-default">Mostra</button> -->
 	<h3>Tabella ping alti <?php if (!isset($this->all)) { echo $this->today; }; ?></h3>
 	<div id="tab">
+	<?php if (count($this->list) >= 200){ ?><ul class="pagination paginationTop"></ul><?php } ?>
 	<table class="table">
 	<thead>
 		<tr>
@@ -26,6 +27,7 @@
 ?>
 	</tbody>
 	</table>
+	<?php if (count($this->list) >= 200){ ?><ul class="pagination paginationBot"></ul><?php } ?>
 	</div>
 </div>
 <script>

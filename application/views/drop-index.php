@@ -3,6 +3,7 @@
 	<!-- <button type="button" class="btn btn-default">Mostra</button> -->
 	<h3>Tabella delle disconnessioni <?php if (!isset($this->all)) { echo $this->today; }; ?></h3>
 	<div id="tab">
+	<?php if (count($this->list) >= 200){ ?><ul class="pagination paginationTop"></ul><?php } ?>
 	<table class="table">
 	<thead>
 		<tr>
@@ -34,6 +35,7 @@
 		<td><?php echo gmdate("z H:i:s", $secs) ?>*</td>
 	</tr>
 	</table>
+	<?php if (count($this->list) >= 200){ ?><ul class="pagination paginationBot"></ul><?php } ?>
 	</div>
 	<p class="text-right"><small>* days hours:minutes:seconds</small></p>
 </div>

@@ -9,8 +9,29 @@
 <script src="<?php echo URL; ?>js/jquery-1.11.1.min.js"></script>
 <script src="<?php echo URL; ?>js/bootstrap/js/bootstrap.min.js"></script>
 <script src="<?php echo URL; ?>js/list-1.1.1.min.js"></script>
+<script src="http://listjs.com/no-cdn/list.pagination.js"></script>
 <script>
 	// Init list
+<?php if (count($this->list) >= 200){ ?>
+	//options.page = 200; dafault
+	var paginationTopOpt = {
+		name: 'paginationTop',
+		paginationClass: 'paginationTop',
+		innerWindow: 99,
+		outerWindow: 99
+	};
+	var paginationBotOpt = {
+		name: 'paginationBot',
+		paginationClass: 'paginationBot',
+		innerWindow: 99,
+		outerWindow: 99
+	};
+
+	options.plugins = [
+		ListPagination(paginationTopOpt),
+		ListPagination(paginationBotOpt)
+	];
+<?php } ?>
 	var contactList = new List('tab', options);
 </script>
 </body>

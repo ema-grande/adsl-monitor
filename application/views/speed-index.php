@@ -9,6 +9,7 @@
 		</ul>
 	</div>
 	<div id="tab">
+	<?php if (count($this->list) >= 200){ ?><ul class="pagination paginationTop"></ul><?php } ?>
 	<table class="table">
 	<thead>
 		<tr>
@@ -44,6 +45,7 @@
 ?>
 	</tbody>
 	</table>
+	<?php if (count($this->list) >= 200){ ?><ul class="pagination paginationBot"></ul><?php } ?>
 	</div>
 </div>
 <script>
