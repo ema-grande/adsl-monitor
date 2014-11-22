@@ -23,4 +23,4 @@ SPEEDTABLE="SPEED"
 TARGET1=8.8.8.8			# target ping
 TARGET2=208.67.222.222	# target ping
 REFRESH=2 				# sleep time
-PINGTOP=700
+PINGTOP=500
