@@ -11,9 +11,9 @@ CONNFLAG=1		# 1 connect -1 not connect
 
 while [ 1 ]
 do
-	P=$(ping -c 1 -w 3 $TARGET1 | grep -e "time=[0-9]" | sed 's/.*time=//g') # > /dev/null 2> /dev/null
+	P=$(ping $PINGOPT $TARGET1 | grep -e "time=[0-9]" | sed 's/.*time=//g') # > /dev/null 2> /dev/null
 	PING1=$?
-	ping -c 1 -w 3 $TARGET2 > /dev/null 2> /dev/null
+	ping $PINGOPT $TARGET2 > /dev/null 2> /dev/null
 	PING2=$?
 	
 	if [ $PING1 -eq 0 -a $PING2 -eq 0 -a $CONNFLAG -ne 1 ]

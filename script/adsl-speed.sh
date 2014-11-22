@@ -19,7 +19,7 @@ SPEEDTESTPATH="$SCRIPTROOT/speedtest-cli/speedtest_cli.py"
 SERVERID=$(python $SPEEDTESTPATH --list | grep -i "telecom italia" | head -n 1 | cut -d")" -f1)
 SPEEDTESTOPT="--simple" #--server $serverID"
 
-ping -c 1 -w 2 $TARGET1 > /dev/null 2> /dev/null
+ping $PINGOPT $TARGET1 > /dev/null 2> /dev/null
 PI=$?
 
 if [ $PI -ne 0 ]; then
