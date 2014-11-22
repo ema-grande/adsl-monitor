@@ -31,10 +31,10 @@
 		<tr>
 			<td class="id"><?php echo $i ?></td>
 			<td class="time"><?php if (isset($item->time)) echo htmlspecialchars($item->time, ENT_QUOTES, 'UTF-8'); ?></td>
-			<td class="time"><?php if (isset($item->dl)) echo htmlspecialchars($item->dl, ENT_QUOTES, 'UTF-8'); ?>
+			<td class="dl"><?php if (isset($item->dl)) echo htmlspecialchars($item->dl, ENT_QUOTES, 'UTF-8'); ?>
 				<?php if ($sHigh) printf('<span class="label label-default">LOW</span>'); ?>
 			</td>
-			<td class="time"><?php if (isset($item->up)) echo htmlspecialchars($item->up, ENT_QUOTES, 'UTF-8'); ?></td>
+			<td class="up"><?php if (isset($item->up)) echo htmlspecialchars($item->up, ENT_QUOTES, 'UTF-8'); ?></td>
 			<td class="ping"><?php if (isset($item->ping)) echo htmlspecialchars($item->ping, ENT_QUOTES, 'UTF-8');?>
 				<?php if ($pHigh) printf('<span class="label label-default">HIGH</span>'); ?>
 			</td>
@@ -48,6 +48,6 @@
 </div>
 <script>
 	var options = {
-		valueNames: [ 'id', 'time', 'ping' ]
+		valueNames: [ 'id', 'time', 'dl', 'up', 'ping' ]
 	};
 </script>
