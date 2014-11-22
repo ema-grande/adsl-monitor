@@ -2,12 +2,12 @@
 	<h2>ADSL Speed</h2>
 	<!-- <button type="button" class="btn btn-default">Mostra</button> -->
 	<h3>Tabella velocit&agrave; download <?php if (!isset($this->all)) { echo $this->today; }; ?></h3>
-	<p>Telecom Alice 7 mega:
+	<div>Telecom Alice 7 mega:
 		<ul>
-			<li>Banda garantita <?php echo BBLIMIT ?> Mbps/s.</li>
+			<li>Banda garantita <?php echo BBLIMIT ?> Mbps/s</li>
 			<li>Ritardo di trasmissione (ping) <?php echo PINGLIMIT ?> ms</li>
 		</ul>
-	</p>
+	</div>
 	<div id="tab">
 	<table class="table">
 	<thead>
