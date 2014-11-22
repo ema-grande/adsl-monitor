@@ -5,6 +5,11 @@ class Model
 	/**
 	 * @param object $db A PDO database connection
 	 */
+
+	private $speedTable = "SPEED";
+	private $pingTable = "PING";
+	private $dropTable = "DROPS";
+	
 	function __construct($db)
 	{
 		try {
@@ -18,7 +23,7 @@ class Model
 
 	public function getSpeedDate( $today )
 	{
-		$sql= "SELECT * FROM SPEED WHERE time LIKE \"%$today%\" ORDER BY ID DESC;";
+		$sql= "SELECT * FROM $this->speedTable WHERE time LIKE \"%$today%\" ORDER BY ID DESC;";
 		$query = $this->db->prepare($sql);
 		$query->execute();
 
@@ -27,7 +32,7 @@ class Model
 	
 	public function getSpeedAll()
 	{
-		$sql= "SELECT * FROM SPEED ORDER BY ID DESC;";
+		$sql= "SELECT * FROM $this->speedTable ORDER BY ID DESC;";
 		$query = $this->db->prepare($sql);
 		$query->execute();
 
@@ -36,7 +41,7 @@ class Model
 
 	public function getSpeedLast()
 	{
-		$sql= "SELECT * FROM SPEED ORDER BY ID DESC LIMIT 1;";
+		$sql= "SELECT * FROM $this->speedTable ORDER BY ID DESC LIMIT 1;";
 		$query = $this->db->prepare($sql);
 		$query->execute();
 
@@ -45,7 +50,7 @@ class Model
 
 	public function getPingDate( $today )
 	{
-		$sql= "SELECT * FROM PING WHERE time LIKE \"%$today%\" ORDER BY ID DESC;";
+		$sql= "SELECT * FROM $this->pingTable WHERE time LIKE \"%$today%\" ORDER BY ID DESC;";
 		$query = $this->db->prepare($sql);
 		$query->execute();
 
@@ -54,7 +59,7 @@ class Model
 	
 	public function getPingAll()
 	{
-		$sql= "SELECT * FROM PING ORDER BY ID DESC;";
+		$sql= "SELECT * FROM $this->pingTable ORDER BY ID DESC;";
 		$query = $this->db->prepare($sql);
 		$query->execute();
 
@@ -63,7 +68,7 @@ class Model
 
 	public function getPingLast()
 	{
-		$sql= "SELECT * FROM PING ORDER BY ID DESC LIMIT 1;";
+		$sql= "SELECT * FROM $this->pingTable ORDER BY ID DESC LIMIT 1;";
 		$query = $this->db->prepare($sql);
 		$query->execute();
 
@@ -72,7 +77,7 @@ class Model
 
 	public function getDropDate( $today )
 	{
-		$sql= "SELECT * FROM DROPS WHERE time LIKE \"%$today%\" ORDER BY ID DESC;";
+		$sql= "SELECT * FROM $this->dropTable WHERE time LIKE \"%$today%\" ORDER BY ID DESC;";
 		$query = $this->db->prepare($sql);
 		$query->execute();
 
@@ -81,7 +86,7 @@ class Model
 	
 	public function getDropAll()
 	{
-		$sql= "SELECT * FROM DROPS ORDER BY ID DESC;";
+		$sql= "SELECT * FROM $this->dropTable ORDER BY ID DESC;";
 		$query = $this->db->prepare($sql);
 		$query->execute();
 
@@ -90,7 +95,7 @@ class Model
 
 	public function getDropLast()
 	{
-		$sql= "SELECT * FROM DROPS ORDER BY ID DESC LIMIT 1;";
+		$sql= "SELECT * FROM $this->dropTable ORDER BY ID DESC LIMIT 1;";
 		$query = $this->db->prepare($sql);
 		$query->execute();
 
