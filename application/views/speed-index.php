@@ -17,13 +17,17 @@
 <?php
 	$i = 1;
 	foreach ($this->list as $item) {
+		$p=(int) substr($item->ping, 0, strpos($item->ping, ' '));
+		if ( $p > 500 ) $high=true; else $high=false;
 ?>
 		<tr>
 			<td class="id"><?php echo $i ?></td>
 			<td class="time"><?php if (isset($item->time)) echo htmlspecialchars($item->time, ENT_QUOTES, 'UTF-8'); ?></td>
 			<td class="time"><?php if (isset($item->dl)) echo htmlspecialchars($item->dl, ENT_QUOTES, 'UTF-8'); ?></td>
 			<td class="time"><?php if (isset($item->up)) echo htmlspecialchars($item->up, ENT_QUOTES, 'UTF-8'); ?></td>
-			<td class="ping"><?php if (isset($item->ping)) echo htmlspecialchars($item->ping, ENT_QUOTES, 'UTF-8'); ?></td>
+			<td class="ping"><?php if (isset($item->ping)) echo htmlspecialchars($item->ping, ENT_QUOTES, 'UTF-8');?>
+				<?php if ($high) printf('<span class="label label-default">HIGH</span>'); ?>
+			</td>
 		</tr>
 <?php		$i++;
 	}
