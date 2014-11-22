@@ -1,3 +1,4 @@
 Some todo
 
-merge adsl-drop and adsl-ping script
+ - Merge /script/conf and /application/config/config.php
+ - BUG: listjs limit table at "ALL" view at 200 item
