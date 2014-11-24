@@ -9,7 +9,7 @@
 <script src="<?php echo URL; ?>js/jquery-1.11.1.min.js"></script>
 <script src="<?php echo URL; ?>js/bootstrap/js/bootstrap.min.js"></script>
 <script src="<?php echo URL; ?>js/list-1.1.1.min.js"></script>
-<script src="http://listjs.com/no-cdn/list.pagination.js"></script>
+<script src="<?php echo URL; ?>js/list.pagination-0.1.1.min.js"></script>
 <script>
 	// Init list
 <?php if (count($this->list) >= 200){ ?>
