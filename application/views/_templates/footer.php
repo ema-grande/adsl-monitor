@@ -13,18 +13,18 @@
 <script>
 	// Init list
 <?php if (count($this->list) >= 200){ ?>
-	//options.page = 200; dafault
+	//options.page = 200;		// default
 	var paginationTopOpt = {
 		name: 'paginationTop',
 		paginationClass: 'paginationTop',
-		innerWindow: 99,
-		outerWindow: 99
+		innerWindow: 3,
+		outerWindow: 2
 	};
 	var paginationBotOpt = {
 		name: 'paginationBot',
 		paginationClass: 'paginationBot',
-		innerWindow: 99,
-		outerWindow: 99
+		innerWindow: 3,
+		outerWindow: 2
 	};
 
 	options.plugins = [
