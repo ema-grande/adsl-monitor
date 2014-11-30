@@ -1,6 +1,6 @@
 #!/bin/bash
 # droppydrop
-
+set -x
 # Read conf vars
 CONF="$(dirname "$0")/conf"
 [ ! -e "$CONF" ] && exit	# TODO: error to log
