@@ -16,15 +16,16 @@ do
 	ping $PINGOPT $TARGET2 > /dev/null 2> /dev/null
 	PING2=$?
 	
+	# Record ping if higher then x
+	PINT=$(echo $P | cut -d" " -f1 | cut -d"." -f1)
+	[ $PINT -gt $PINGTOP ] && mysql -h $DBHOST -u $DBUSER -e \
+		"INSERT INTO $DBNAME.$PINGTABLE VALUES (NULL, CURRENT_TIMESTAMP, \"$P\");"
+	
 	if [ $PING1 -eq 0 -a $PING2 -eq 0 -a $CONNFLAG -ne 1 ]
 	then
 		# ADSL up
 		CONNFLAG=1
 
-		# Record ping if higher then x
-		PINT=$(echo $P | cut -d" " -f1 | cut -d"." -f1)
-		[ $PINT -gt $PINGTOP ] && mysql -h $DBHOST -u $DBUSER -e \
-			"INSERT INTO $DBNAME.$PINGTABLE VALUES (NULL, CURRENT_TIMESTAMP, \"$P\");"
 
 		# Record data
 		SEC=$(( SECONDS - STARTCOUNT ))
