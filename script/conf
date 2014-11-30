@@ -23,5 +23,5 @@ SPEEDTABLE="SPEED"
 TARGET1=8.8.8.8			# target ping Google DNS
 TARGET2=208.67.222.222	# target ping OpenDNS
 REFRESH=2 				# sleep time
-PINGTOP=400				# TODO: read from /application/conf/conf.php
+PINGTOP=500				# TODO: read from /application/conf/conf.php
 PINGOPT="-c1 -W3"		# Send 1 ping wait at least 3 seconds
