@@ -11,17 +11,17 @@ done
 
 
 # DB info
-DBHOST=127.0.0.1
-DBUSER="adsl"
-DBNAME="adsl"
+DB_HOST=127.0.0.1
+DB_USER="adsl"
+DB_NAME="adsl"
 
 # Tables name - this must be the same as /application/model/model.php
-DROPTABLE="DROPS"
-PINGTABLE="PING"
-SPEEDTABLE="SPEED"
+DROP_TABLE="DROPS"
+PING_TABLE="PING"
+SPEED_TABLE="SPEED"
 
 TARGET1=8.8.8.8			# target ping Google DNS
 TARGET2=208.67.222.222	# target ping OpenDNS
 REFRESH=2 				# sleep time
-PINGTOP=500				# TODO: read from /application/conf/conf.php
-PINGOPT="-c1 -W3"		# Send 1 ping wait at least 3 seconds
+PING_TOP=800			# TODO: read from /application/conf/conf.php
+PING_OPT="-c1 -W3"		# Send 1 ping wait at least 3 seconds

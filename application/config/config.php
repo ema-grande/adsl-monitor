@@ -56,5 +56,5 @@ define('DB_PASS', '');
  * Limit for connection
  * Garanted bandwidth, ping delay etc.
  */
-define('PINGLIMIT', 150);		// Telecom Italia Alice ADSL should garantee this ping
-define('BBLIMIT', 2.1);			// Telecom Italia Alice ADSL should garantee this broadband speed
+define('PING_LIMIT', 150);		// Telecom Italia Alice ADSL should garantee this ping
+define('BB_LIMIT', 2.1);			// Telecom Italia Alice ADSL should garantee this broadband speed

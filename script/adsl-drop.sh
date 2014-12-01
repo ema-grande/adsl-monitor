@@ -11,16 +11,16 @@ CONNFLAG=1		# 1 connect -1 not connect
 
 while [ 1 ]
 do
-	P=$(ping $PINGOPT $TARGET1 | grep -e "time=[0-9]" | sed 's/.*time=//g') # > /dev/null 2> /dev/null
+	P=$(ping $PING_OPT $TARGET1 | grep -e "time=[0-9]" | sed 's/.*time=//g') # > /dev/null 2> /dev/null
 	PING1=$?
-	ping $PINGOPT $TARGET2 > /dev/null 2> /dev/null
+	ping $PING_OPT $TARGET2 > /dev/null 2> /dev/null
 	PING2=$?
 	
 	# Record ping if higher then x
 	PINT=$(echo $P | cut -d" " -f1 | cut -d"." -f1)
 	# FIXME: some error may occur if ping fail "integer expression expected"
-	[ $PINT -gt $PINGTOP ] && mysql -h $DBHOST -u $DBUSER -e \
-		"INSERT INTO $DBNAME.$PINGTABLE VALUES (NULL, CURRENT_TIMESTAMP, \"$P\");" 
+	[ $PINT -gt $PING_TOP ] && mysql -h $DB_HOST -u $DB_USER -e \
+		"INSERT INTO $DB_NAME.$PING_TABLE VALUES (NULL, CURRENT_TIMESTAMP, \"$P\");" 
 	
 	if [ $PING1 -eq 0 -a $PING2 -eq 0 -a $CONNFLAG -ne 1 ]
 	then
@@ -29,8 +29,8 @@ do
 		# Record data
 		SEC=$(( SECONDS - STARTCOUNT ))
 		DURATA=$SEC
-		mysql -h $DBHOST -u $DBUSER -e \
-			"INSERT INTO $DBNAME.$DROPTABLE VALUES (NULL, \"$DATADROP\", \"$DURATA\");"
+		mysql -h $DB_HOST -u $DB_USER -e \
+			"INSERT INTO $DB_NAME.$DROP_TABLE VALUES (NULL, \"$DATADROP\", \"$DURATA\");"
 	fi
 
 	if [ $PING1 -ne 0 -a $PING2 -ne 0 -a $CONNFLAG -ne -1 ]

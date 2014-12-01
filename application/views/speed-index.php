@@ -4,8 +4,8 @@
 	<h3>Tabella velocit&agrave; download <?php if (!isset($this->all)) { echo $this->today; }; ?></h3>
 	<div>Telecom Alice 7 mega:
 		<ul>
-			<li>Banda garantita <?php echo BBLIMIT ?> Mbps/s</li>
-			<li>Ritardo di trasmissione (ping) <?php echo PINGLIMIT ?> ms</li>
+			<li>Banda garantita <?php echo BB_LIMIT ?> Mbps/s</li>
+			<li>Ritardo di trasmissione (ping) <?php echo PING_LIMIT ?> ms</li>
 		</ul>
 	</div>
 	<div id="tab">
@@ -31,11 +31,11 @@
 			<td class="id"><?php echo $i ?></td>
 			<td class="time"><?php if (isset($item->time)) echo htmlspecialchars($item->time, ENT_QUOTES, 'UTF-8'); ?></td>
 			<td class="dl"><?php if (isset($item->dl)) echo htmlspecialchars($item->dl, ENT_QUOTES, 'UTF-8'); ?>
-				<?php if ( $speed < BBLIMIT and $speed != 0 ) printf('<span class="label label-default">LOW</span>'); ?>
+				<?php if ( $speed < BB_LIMIT and $speed != 0 ) printf('<span class="label label-default">LOW</span>'); ?>
 			</td>
 			<td class="up"><?php if (isset($item->up)) echo htmlspecialchars($item->up, ENT_QUOTES, 'UTF-8'); ?></td>
 			<td class="ping"><?php if (isset($item->ping)) echo htmlspecialchars($item->ping, ENT_QUOTES, 'UTF-8');?>
-				<?php if ( $p > PINGLIMIT ) printf('<span class="label label-default">HIGH</span>'); ?>
+				<?php if ( $p > PING_LIMIT ) printf('<span class="label label-default">HIGH</span>'); ?>
 			</td>
 		</tr>
 <?php		$i++;
