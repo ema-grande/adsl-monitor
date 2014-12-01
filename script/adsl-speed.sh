@@ -1,4 +1,39 @@
 #!/bin/bash
 # Are you speedy?
 
-# TODO: de
+# TODO: dependencie speedtest_cli
+
+# Read conf vars
+CONF="$(dirname "$0")/conf"
+[ ! -e "$CONF" ] && exit	# TODO: log error
+
+. $CONF
+
+# TODO: change this
+SCRIPTROOT=$(dirname $0)
+TMPFILE="$SCRIPTROOT/speedtest.tmp"
+ADSLPINGPATH="$SCRIPTROOT/adsl-ping.sh"
+SPEEDTESTPATH="$SCRIPTROOT/speedtest-cli/speedtest_cli.py"
+
+[ ! -e $SPEEDTESTPATH ] && exit  # TODO: log error
+SERVERID=$(python $SPEEDTESTPATH --list | grep -i "telecom italia" | head -n 1 | cut -d")" -f1)
+SPEEDTESTOPT="--simple" #--server $serverID"
+
+ping $PING_OPT $TARGET1 > /dev/null 2> /dev/null
+PI=$?
+
+if [ $PI -ne 0 ]; then
+	# no connection
+	P="NAN"
+	DL="NAN"
+	UP="NAN"
+else
+	python $SPEEDTESTPATH $SPEEDTESTOPT > $TMPFILE
+	P=$(cat $TMPFILE | grep Ping | cut -d":" -f2 | cut -d"." -f1 | sed 's/^ //')
+	P="$P ms"
+	DL=$(cat $TMPFILE | grep Download | cut -d":" -f2 | sed 's/^ //')
+	UP=$(cat $TMPFILE | grep Upload | cut -d":" -f2 | sed 's/^ //')
+	rm $TMPFILE
+fi
+mysql -h $DB_HOST -u $DB_USER -e \
+	"INSERT INTO $DB_NAME.$SPEED_TABLE VALUES (NULL, \"$P\", \"$DL\", \"$UP\", CURRENT_TIMESTAMP);"
