@@ -1,7 +1,7 @@
 <div class="starter-template">
-	<h2>ADSL Speed</h2>
+	<h2>Ping</h2>
 	<!-- <button type="button" class="btn btn-default">Mostra</button> -->
-	<h3>Tabella ping alti <?php if (!isset($this->all)) { echo $this->today; }; ?></h3>
+	<h3>Tabella ping <?php if (!isset($this->all)) { echo $this->today; }; ?></h3>
 	<div id="tab">
 	<?php if (count($this->list) >= 200){ ?><ul class="pagination paginationTop"></ul><?php } ?>
 	<table class="table">
