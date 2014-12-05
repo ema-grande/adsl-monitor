@@ -28,7 +28,8 @@ do
 		# Record ping if higher then some top latency
 		P_INT=$(echo $P | cut -d" " -f1 | cut -d"." -f1)
 		# FIXME: some error may occur if ping fail "integer expression expected"
-		[ $P_INT -gt $PING_TOP ] && mysql -h $DB_HOST -u $DB_USER -e \
+		# this should be fixed
+		[[ $P_INT -gt $PING_TOP ]] && mysql -h $DB_HOST -u $DB_USER -e \
 			"INSERT INTO $DB_NAME.$PING_TABLE VALUES (NULL, CURRENT_TIMESTAMP, \"$P\");" 
 	fi
 	
