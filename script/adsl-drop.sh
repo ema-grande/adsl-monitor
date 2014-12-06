@@ -15,7 +15,7 @@ do
 	MINUTES=$(date +%M)
 	if [ $MINUTES -eq 00 -o $MINUTES -eq 30 ]; then
 		bash $SCRIPT_ROOT/adsl-speed.sh
-		sleep 40		#prevent multi speed test in 1 min
+		sleep 60		#prevent multi speed test in 1 min
 	fi
 	# change in "sleep until speed test is done" find a way :o
 
