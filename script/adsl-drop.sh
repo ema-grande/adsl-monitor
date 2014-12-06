@@ -14,8 +14,8 @@ do
 	# Every half an hour make speed test
 	MINUTES=$(date +%M)
 	if [ $MINUTES -eq 00 -o $MINUTES -eq 30 ]; then
-		./$SCRIPT_ROOT/adsl-speed.sh
-		sleep 60		#prevent multi speed test in 1 min
+		bash $SCRIPT_ROOT/adsl-speed.sh
+		sleep 40		#prevent multi speed test in 1 min
 	fi
 	# change in "sleep until speed test is done" find a way :o
 
