@@ -11,9 +11,10 @@ done
 
 # DB info
 # FIXME: rly fck ugly
-DB_HOST=$(cat $PHPCONF | grep DB_HOST ); DBHOST=${DBHOST#*, \'}; DBHOST=${DBHOST%\'*}
-DB_USER=$(cat $PHPCONF | grep DB_USER ); DBUSER=${DBUSER#*, \'}; DBUSER=${DBUSER%\'*}
-DB_NAME=$(cat $PHPCONF | grep DB_NAME ); DBNAME=${DBNAME#*, \'}; DBNAME=${DBNAME%\'*}
+PHP_CONF="$(dirname $0)/../application/config/config.php"
+DB_HOST=$(cat $PHP_CONF | grep "DB_HOST" ); DB_HOST=${DB_HOST#*, \'}; DB_HOST=${DB_HOST%\'*}
+DB_USER=$(cat $PHP_CONF | grep "DB_USER" ); DB_USER=${DB_USER#*, \'}; DB_USER=${DB_USER%\'*}
+DB_NAME=$(cat $PHP_CONF | grep "DB_NAME" ); DB_NAME=${DB_NAME#*, \'}; DB_NAME=${DB_NAME%\'*}
 
 TARGET1=8.8.8.8			# target ping Google DNS
 TARGET2=208.67.222.222	# target ping OpenDNS
