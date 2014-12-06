@@ -10,14 +10,10 @@ for p in $deps; do
 done
 
 # DB info
-DB_HOST=127.0.0.1
-DB_USER="adsl"
-DB_NAME="adsl"
-
-# Tables name - this must be the same as /application/model/model.php
-DROP_TABLE="DROPS"
-PING_TABLE="PING"
-SPEED_TABLE="SPEED"
+# FIXME: rly fck ugly
+DB_HOST=$(cat $PHPCONF | grep DB_HOST ); DBHOST=${DBHOST#*, \'}; DBHOST=${DBHOST%\'*}
+DB_USER=$(cat $PHPCONF | grep DB_USER ); DBUSER=${DBUSER#*, \'}; DBUSER=${DBUSER%\'*}
+DB_NAME=$(cat $PHPCONF | grep DB_NAME ); DBNAME=${DBNAME#*, \'}; DBNAME=${DBNAME%\'*}
 
 TARGET1=8.8.8.8			# target ping Google DNS
 TARGET2=208.67.222.222	# target ping OpenDNS
@@ -26,4 +22,10 @@ PING_TOP=800			# TODO: read from /application/conf/conf.php
 PING_OPT="-c1 -W3"		# Send 1 ping wait at least 3 seconds
 
 # DO NOT CHANGE
+# Tables name - this must be the same as /application/model/model.php
+DROP_TABLE="DROPS"
+PING_TABLE="PING"
+SPEED_TABLE="SPEED"
+
 SCRIPT_ROOT=$(dirname $0)
+# DO NOT CHANGE
