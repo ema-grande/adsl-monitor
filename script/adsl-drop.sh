@@ -19,7 +19,8 @@ do
 	fi
 	# change in "sleep until speed test is done" find a way :o
 
-	P=$(ping $PING_OPT $TARGET1 | grep -e "time=[0-9]" | sed 's/.*time=//g') # &> /dev/null
+	P=$(ping $PING_OPT $TARGET1 | grep -e "time=[0-9]" | sed 's/.*time=//g')
+	ping $PING_OPT $TARGET1 &> /dev/null
 	PING1=$?
 	ping $PING_OPT $TARGET2 &> /dev/null
 	PING2=$?

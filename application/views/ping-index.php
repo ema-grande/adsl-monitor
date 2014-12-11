@@ -15,11 +15,20 @@
 	<tbody class="list">
 <?php
 	$i = 1;
+	$now = time();
 	foreach ($this->list as $item) {
+		$diff = $now - strtotime($item->time);
+		$diffH = gmdate("H", $diff);
+		$diffMin = gmdate("i", $diff);
+		$diffSec = gmdate("s", $diff);
 ?>
 		<tr>
 			<td class="id"><?php echo $i ?></td>
+		<?php if( intval($diffH, 10) >= 2 ) { ?>
 			<td class="time"><?php if (isset($item->time)) echo htmlspecialchars($item->time, ENT_QUOTES, 'UTF-8'); ?></td>
+		<?php } else { ?>
+			<td class="time"><?php if (isset($item->time)) { if($diffH != "00") echo "$diffH h "; if($diffMin != "00") echo "$diffMin m "; if($diffSec != "00") echo "$diffSec s "; echo "ago"; } ?></td>
+		<?php } ?>
 			<td class="ping"><?php if (isset($item->ping)) echo htmlspecialchars($item->ping, ENT_QUOTES, 'UTF-8'); ?></td>
 		</tr>
 <?php		$i++;
