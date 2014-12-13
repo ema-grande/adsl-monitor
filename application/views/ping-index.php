@@ -1,14 +1,14 @@
 <div class="starter-template">
 	<h2>Ping</h2>
 	<!-- <button type="button" class="btn btn-default">Mostra</button> -->
-	<h3>Tabella ping <?php if (!isset($this->all)) { echo $this->today; }; ?></h3>
+	<h3>Ping table <?php if (!isset($this->all)) { echo $this->today; }; ?></h3>
 	<div id="tab">
 	<?php if (count($this->list) >= 200){ ?><ul class="pagination paginationTop"></ul><?php } ?>
 	<table class="table">
 	<thead>
 		<tr>
 			<th class="sort" data-sort="id">#</th>
-			<th class="sort" data-sort="time">Ora</th>
+			<th class="sort" data-sort="time">Time</th>
 			<th class="sort" data-sort="ping">Ping</th>
 		</tr>
 	</thead>

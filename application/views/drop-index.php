@@ -1,15 +1,15 @@
 <div class="starter-template">
-	<h2># Disconnessioni</h2>
+	<h2># Disconnetions</h2>
 	<!-- <button type="button" class="btn btn-default">Mostra</button> -->
-	<h3>Tabella delle disconnessioni <?php if (!isset($this->all)) { echo $this->today; }; ?></h3>
+	<h3>Disconnetion table <?php if (!isset($this->all)) { echo $this->today; }; ?></h3>
 	<div id="tab">
 	<?php if (count($this->list) >= 200){ ?><ul class="pagination paginationTop"></ul><?php } ?>
 	<table class="table">
 	<thead>
 		<tr>
 			<th class="sort" data-sort="id">#</th>
-			<th class="sort" data-sort="time">Ora</th>
-			<th class="sort" data-sort="durata">Duata</th>
+			<th class="sort" data-sort="time">Time</th>
+			<th class="sort" data-sort="durata">Duration</th>
 		</tr>
 	</thead>
 	<tbody class="list">

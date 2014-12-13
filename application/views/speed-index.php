@@ -1,11 +1,11 @@
 <div class="starter-template">
 	<h2>ADSL Speed</h2>
 	<!-- <button type="button" class="btn btn-default">Mostra</button> -->
-	<h3>Tabella velocit&agrave; download <?php if (!isset($this->all)) { echo $this->today; }; ?></h3>
+	<h3>Download speed table <?php if (!isset($this->all)) { echo $this->today; }; ?></h3>
 	<div>Telecom Alice 7 mega:
 		<ul>
-			<li>Banda garantita <?php echo BB_LIMIT ?> Mbps/s</li>
-			<li>Ritardo di trasmissione (ping) <?php echo PING_LIMIT ?> ms</li>
+			<li>Guaranteed bandwidth <?php echo BB_LIMIT ?> Mbps/s</li>
+			<li>Transmission delay (ping) <?php echo PING_LIMIT ?> ms</li>
 		</ul>
 	</div>
 	<div id="tab">
@@ -14,7 +14,7 @@
 	<thead>
 		<tr>
 			<th class="sort" data-sort="id">#</th>
-			<th class="sort" data-sort="time">Ora</th>
+			<th class="sort" data-sort="time">Time</th>
 			<th class="sort" data-sort="dl">Download</th>
 			<th class="sort" data-sort="up">Upload</th>
 			<th class="sort" data-sort="ping">Ping</th>
