@@ -24,10 +24,17 @@
 ?>
 		<tr>
 			<td class="id"><?php echo $i ?></td>
-		<?php if( intval($diffH, 10) >= 2 ) { ?>
-			<td class="time"><?php if (isset($item->time)) echo htmlspecialchars($item->time, ENT_QUOTES, 'UTF-8'); ?></td>
+		<?php if( $diff < 7200 ) { ?>
+			<td class="time"><?php
+				if (isset($item->time)) {
+					$time = "";
+					( $diffH != "00" ) ? $time = $time . "$diffH h " : $time;
+					( $diffMin != "00" ) ? $time = $time . "$diffMin min " : $time;
+					$time = $time . "$diffSec sec ago";
+					echo $time;
+				} ?></td>
 		<?php } else { ?>
-			<td class="time"><?php if (isset($item->time)) { if($diffH != "00") echo "$diffH h "; if($diffMin != "00") echo "$diffMin m "; if($diffSec != "00") echo "$diffSec s "; echo "ago"; } ?></td>
+			<td class="time"><?php if (isset($item->time)) echo htmlspecialchars($item->time, ENT_QUOTES, 'UTF-8'); ?></td>
 		<?php } ?>
 			<td class="ping"><?php if (isset($item->ping)) echo htmlspecialchars($item->ping, ENT_QUOTES, 'UTF-8'); ?></td>
 		</tr>
