@@ -24,7 +24,7 @@
 ?>
 		<tr>
 			<td class="id"><?php echo $i ?></td>
-		<?php if( $diff < 7200 ) { ?>
+		<?php if( $diff < 1800 ) { ?>
 			<td class="time"><?php
 				if (isset($item->time)) {
 					$time = "";
