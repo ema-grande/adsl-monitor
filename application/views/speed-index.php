@@ -1,7 +1,7 @@
 <div class="starter-template">
 	<h2>ADSL Speed</h2>
 	<!-- <button type="button" class="btn btn-default">Mostra</button> -->
-	<h3>Download speed table <?php if (!isset($this->all)) { echo $this->today; }; ?></h3>
+	<h3>Download speed table <?php if (!isset($this->all)) { echo $this->today." ".gmdate("H:i:s"); }; ?></h3>
 	<div>Telecom Alice 7 mega:
 		<ul>
 			<li>Guaranteed bandwidth <?php echo BB_LIMIT ?> Mbps/s</li>
@@ -29,13 +29,13 @@
 		$p=(int) substr($item->ping, 0, strpos($item->ping, " "));
 
 		$diff = $now - strtotime($item->time);
-		$diffH = gmdate("H", $diff);
-		$diffMin = gmdate("i", $diff);
-		$diffSec = gmdate("s", $diff);
 ?>
 		<tr>
 			<td class="id"><?php echo $i ?></td>
-		<?php if( $diff < 7200 ) { ?>
+		<?php if( $diff < 7200 ) { 
+			$diffH = gmdate("H", $diff);
+			$diffMin = gmdate("i", $diff);
+			$diffSec = gmdate("s", $diff); ?>
 			<td class="time"><?php
 				if (isset($item->time)) {
 					$time = "";

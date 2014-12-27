@@ -1,7 +1,7 @@
 <div class="starter-template">
 	<h2>Ping</h2>
 	<!-- <button type="button" class="btn btn-default">Mostra</button> -->
-	<h3>Ping table <?php if (!isset($this->all)) { echo $this->today; }; ?></h3>
+	<h3>Ping table <?php if (!isset($this->all)) { echo $this->today." ".gmdate("H:i:s"); }; ?></h3>
 	<div id="tab">
 	<?php if (count($this->list) >= 200){ ?><ul class="pagination paginationTop"></ul><?php } ?>
 	<table class="table">
@@ -18,13 +18,13 @@
 	$now = time();
 	foreach ($this->list as $item) {
 		$diff = $now - strtotime($item->time);
-		$diffH = gmdate("H", $diff);
-		$diffMin = gmdate("i", $diff);
-		$diffSec = gmdate("s", $diff);
 ?>
 		<tr>
 			<td class="id"><?php echo $i ?></td>
-		<?php if( $diff < 1800 ) { ?>
+		<?php if( $diff < 1800 ) { 
+			$diffH = gmdate("H", $diff);
+			$diffMin = gmdate("i", $diff);
+			$diffSec = gmdate("s", $diff); ?>
 			<td class="time"><?php
 				if (isset($item->time)) {
 					$time = "";
