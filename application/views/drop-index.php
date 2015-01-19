@@ -20,8 +20,8 @@
 ?>
 		<tr>
 			<td class="id"><?php echo $i ?></td>
-			<td class="time"><?php if (isset($item->time)) echo htmlspecialchars($item->time, ENT_QUOTES, 'UTF-8'); ?></td>
-			<td class="durata"><?php if (isset($item->durata)) echo htmlspecialchars(gmdate('H:i:s',$item->durata), ENT_QUOTES, 'UTF-8'); ?></td>
+			<td class="time"><?php if (isset($item->time)) echo htmlspecialchars(gmdate("Y-m-d H:i", $item->time), ENT_QUOTES, 'UTF-8'); ?></td>
+			<td class="durata"><?php if (isset($item->durata)) echo htmlspecialchars(gmdate('H:i:s', $item->durata), ENT_QUOTES, 'UTF-8'); ?></td>
 		</tr>
 <?php
 		$i++;

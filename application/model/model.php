@@ -19,11 +19,12 @@ class Model
 		}
 
 		$today = date( "Y-m-d", time() );
+		//$today = time();
 	}
 
 	public function getSpeedDate( $today )
 	{
-		$sql= "SELECT * FROM $this->speedTable WHERE time LIKE \"%$today%\" ORDER BY ID DESC;";
+		$sql= "SELECT * FROM $this->speedTable WHERE FROM_UNIXTIME(time,'%Y-%m-%d') LIKE \"%$today%\" ORDER BY ID DESC;";
 		$query = $this->db->prepare($sql);
 		$query->execute();
 
@@ -50,7 +51,7 @@ class Model
 
 	public function getPingDate( $today )
 	{
-		$sql= "SELECT * FROM $this->pingTable WHERE time LIKE \"%$today%\" ORDER BY ID DESC;";
+		$sql= "SELECT * FROM $this->pingTable WHERE FROM_UNIXTIME(time,'%Y-%m-%d') LIKE \"%$today%\" ORDER BY ID DESC;";
 		$query = $this->db->prepare($sql);
 		$query->execute();
 
@@ -77,7 +78,7 @@ class Model
 
 	public function getDropDate( $today )
 	{
-		$sql= "SELECT * FROM $this->dropTable WHERE time LIKE \"%$today%\" ORDER BY ID DESC;";
+		$sql= "SELECT * FROM $this->dropTable WHERE FROM_UNIXTIME(time,'%Y-%m-%d') LIKE \"%$today%\" ORDER BY ID DESC;";
 		$query = $this->db->prepare($sql);
 		$query->execute();
 

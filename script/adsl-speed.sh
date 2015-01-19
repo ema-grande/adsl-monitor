@@ -43,4 +43,4 @@ else
 	rm $TMP_FILE
 fi
 mysql -h $DB_HOST -u $DB_USER -e \
-	"INSERT INTO $DB_NAME.$SPEED_TABLE VALUES (NULL, \"$P\", \"$DL\", \"$UP\", CURRENT_TIMESTAMP);"
+	"INSERT INTO $DB_NAME.$SPEED_TABLE VALUES (NULL, \"$P\", \"$DL\", \"$UP\", UNIX_TIMESTAMP(NOW()) );"

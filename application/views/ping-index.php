@@ -34,7 +34,7 @@
 					echo $time;
 				} ?></td>
 		<?php } else { ?>
-			<td class="time"><?php if (isset($item->time)) echo htmlspecialchars($item->time, ENT_QUOTES, 'UTF-8'); ?></td>
+			<td class="time"><?php if (isset($item->time)) echo htmlspecialchars(gmdate("Y-m-d H:i:s", $item->time), ENT_QUOTES, 'UTF-8'); ?></td>
 		<?php } ?>
 			<td class="ping"><?php if (isset($item->ping)) echo htmlspecialchars($item->ping, ENT_QUOTES, 'UTF-8'); ?></td>
 		</tr>

@@ -31,7 +31,7 @@ do
 		# FIXME: some error may occur if ping fail "integer expression expected"
 		# this should be fixed
 		[[ $P_INT -gt $PING_TOP ]] && mysql -h $DB_HOST -u $DB_USER -e \
-			"INSERT INTO $DB_NAME.$PING_TABLE VALUES (NULL, CURRENT_TIMESTAMP, \"$P\");" 
+			"INSERT INTO $DB_NAME.$PING_TABLE VALUES (NULL, UNIX_TIMESTAMP(NOW()), \"$P\");" 
 	fi
 	
 	if [ $PING1 -eq 0 -a $PING2 -eq 0 -a $CONN_FLAG -ne 1 ]
@@ -42,7 +42,7 @@ do
 		SEC=$(( SECONDS - STARTCOUNT ))
 		SPAN=$SEC
 		mysql -h $DB_HOST -u $DB_USER -e \
-			"INSERT INTO $DB_NAME.$DROP_TABLE VALUES (NULL, \"$DATADROP\", \"$SPAN\");"
+			"INSERT INTO $DB_NAME.$DROP_TABLE VALUES (NULL, UNIX_TIMESTAMP(NOW()), \"$SPAN\");"
 	fi
 
 	if [ $PING1 -ne 0 -a $PING2 -ne 0 -a $CONN_FLAG -ne -1 ]

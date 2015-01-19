@@ -28,7 +28,7 @@
 		$speed=(float) substr($item->dl, 0, strpos($item->dl, " "));
 		$p=(int) substr($item->ping, 0, strpos($item->ping, " "));
 
-		$diff = $now - strtotime($item->time);
+		$diff = $now - $item->time;
 ?>
 		<tr>
 			<td class="id"><?php echo $i ?></td>
@@ -45,7 +45,7 @@
 					echo $time;
 				} ?></td>
 		<?php } else { ?>
-			<td class="time"><?php if (isset($item->time)) echo htmlspecialchars($item->time, ENT_QUOTES, 'UTF-8'); ?></td>
+			<td class="time"><?php if (isset($item->time)) echo htmlspecialchars(gmdate("Y-m-d H:i", $item->time), ENT_QUOTES, 'UTF-8'); ?></td>
 		<?php } ?>
 			<td class="dl"><?php
 				if (isset($item->dl)) echo htmlspecialchars($item->dl, ENT_QUOTES, 'UTF-8');
