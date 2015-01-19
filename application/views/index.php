@@ -1,8 +1,8 @@
 <?php
 	$now = time();
-	$speedDiff = $now - strtotime($listSpeed[0]->time);
-	$discDiff = $now - strtotime($listDrop[0]->time);
-	$pingDiff = $now - strtotime($listPing[0]->time);
+	$speedDiff = $now - $listSpeed[0]->time;
+	$discDiff = $now - $listDrop[0]->time;
+	$pingDiff = $now - $listPing[0]->time;
 	$format = "z \d H \h i \m\i\\n s \s\\e\c"
 ?><br/>
 <div class="container starter-template">

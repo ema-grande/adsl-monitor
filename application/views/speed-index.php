@@ -1,7 +1,7 @@
 <div class="starter-template">
 	<h2>ADSL Speed</h2>
 	<!-- <button type="button" class="btn btn-default">Mostra</button> -->
-	<h3>Download speed table <?php if (!isset($this->all)) { echo $this->today." ".gmdate("H:i:s"); }; ?></h3>
+	<h3>Download speed table <?php if (!isset($this->all)) { echo $this->today." ".date("H:i:s"); }; ?></h3>
 	<div>Telecom Alice 7 mega:
 		<ul>
 			<li>Guaranteed bandwidth <?php echo BB_LIMIT ?> Mbps/s</li>
@@ -45,7 +45,7 @@
 					echo $time;
 				} ?></td>
 		<?php } else { ?>
-			<td class="time"><?php if (isset($item->time)) echo htmlspecialchars(gmdate("Y-m-d H:i", $item->time), ENT_QUOTES, 'UTF-8'); ?></td>
+			<td class="time"><?php if (isset($item->time)) echo htmlspecialchars(date("Y-m-d H:i", $item->time), ENT_QUOTES, 'UTF-8'); ?></td>
 		<?php } ?>
 			<td class="dl"><?php
 				if (isset($item->dl)) echo htmlspecialchars($item->dl, ENT_QUOTES, 'UTF-8');

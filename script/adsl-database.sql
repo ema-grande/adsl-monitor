@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 -- Database: `adsl`
 --
 
+CREATE DATABASE IF NOT EXISTS `adsl`;
+
 -- --------------------------------------------------------
 
 --
