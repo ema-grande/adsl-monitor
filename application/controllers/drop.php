@@ -14,10 +14,7 @@ class Drop extends Controller
 	public function index()
 	{
 		$this->today = date( "Y-m-d", time() );
-		$this->list = $this->model->getDropDate($this->today);
-
-		// load views
-		$this->render();
+		$this->day($this->today);
 		
 	}
 
