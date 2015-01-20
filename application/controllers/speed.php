@@ -7,17 +7,16 @@ class Speed extends Controller
 {
 	public $today;
 	public $list;
+	public $avg;
 	public $control = "speed";
+	public $section;
 	/**
 	 * 
 	 */
 	public function index()
 	{
 		$this->today = date( "Y-m-d", time() );
-		$this->list = $this->model->getSpeedDate($this->today);
-		
-		// load views
-		$this->render();
+		$this->day($this->today);
 	}
 
 	/**
@@ -27,6 +26,7 @@ class Speed extends Controller
 	{
 		$this->today = $today;
 		$this->list = $this->model->getSpeedDate($today);
+		$this->avg = $this->model->getSpeedAvgDay($today);
 
 		// load views
 		$this->render();
@@ -45,12 +45,22 @@ class Speed extends Controller
 		$this->render();
 	}
 
-	private function render()
+	public function avarage( $today='')
+	{
+		$this->today = $today;
+		//$this->list = new StdClass;
+		$this->list->avg = $this->model->getSpeedAvgDay($today);
+
+		// load view
+		$this->render('speed-avg.php');
+	}
+
+	private function render($content='speed-index.php')
 	{
 		// load views
 		require APP . 'views/_templates/header.php';
 		require APP . 'views/_templates/nav-t.php';
-		require APP . 'views/speed-index.php';
+		require APP . 'views/'.$content;
 		require APP . 'views/_templates/nav-b.php';
 		require APP . 'views/_templates/footer.php';
 	}
