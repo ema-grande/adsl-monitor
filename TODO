@@ -5,4 +5,5 @@ TODO:
 DONE:
  + Merge /script/conf and /application/config/config.php
  + Change datatime to timestamp in database
+ + FIXME: check if NAN compromise avg calcolation
  
