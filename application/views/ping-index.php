@@ -1,7 +1,7 @@
 <div class="starter-template">
 	<h2>Ping</h2>
 	<!-- <button type="button" class="btn btn-default">Mostra</button> -->
-	<h3>Ping table <?php if (!isset($this->all)) { echo $this->today." ".gmdate("H:i:s"); }; ?></h3>
+	<h3>Ping table <?php if (!isset($this->all)) { echo $this->today." ".date("H:i:s"); }; ?></h3>
 	<div id="tab">
 	<?php if (count($this->list) >= 200){ ?><ul class="pagination paginationTop"></ul><?php } ?>
 	<table class="table">
@@ -17,7 +17,7 @@
 	$i = 1;
 	$now = time();
 	foreach ($this->list as $item) {
-		$diff = $now - strtotime($item->time);
+		$diff = $now - $item->time;
 ?>
 		<tr>
 			<td class="id"><?php echo $i ?></td>
@@ -34,7 +34,7 @@
 					echo $time;
 				} ?></td>
 		<?php } else { ?>
-			<td class="time"><?php if (isset($item->time)) echo htmlspecialchars(gmdate("Y-m-d H:i:s", $item->time), ENT_QUOTES, 'UTF-8'); ?></td>
+			<td class="time"><?php if (isset($item->time)) echo htmlspecialchars(date("Y-m-d H:i:s", $item->time), ENT_QUOTES, 'UTF-8'); ?></td>
 		<?php } ?>
 			<td class="ping"><?php if (isset($item->ping)) echo htmlspecialchars($item->ping, ENT_QUOTES, 'UTF-8'); ?></td>
 		</tr>
