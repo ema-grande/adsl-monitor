@@ -55,11 +55,12 @@ class Model
 
 	/**
 	 * @param String $today "%Y-%m-%d" date representation
+	 * @param String $format "%Y" | "%Y-%m" | "%Y-%m-%d"
 	 * @return 
 	 */
-	public function getSpeedAvgDay( $today )
+	public function getAvgSpeedDate( $today )
 	{
-		$sql = "SELECT * FROM $this->speedTable WHERE FROM_UNIXTIME(time, '%Y-%m-%d') LIKE \"$today\"";
+		$sql = "SELECT * FROM $this->speedTable WHERE FROM_UNIXTIME(time, '%Y-%m-%d') LIKE \"%$today%\"";
 		$query = $this->db->prepare($sql);
 		$query->execute();
 		$list = $query->fetchAll();

@@ -8,6 +8,8 @@ class Ping extends Controller
 	public $today;
 	public $list;
 	public $control = "ping";
+	public $section;
+
 	/**
 	 * 
 	 */
@@ -15,6 +17,7 @@ class Ping extends Controller
 	{
 		$this->today = date( "Y-m-d", time() );
 		$this->day($this->today);
+		$this->section = "index";
 	}
 
 	/**
@@ -24,6 +27,7 @@ class Ping extends Controller
 	{
 		$this->today = $today;
 		$this->list = $this->model->getPingDate($this->today);
+		$this->section = "day";
 		
 		// load views
 		$this->render();
@@ -37,6 +41,7 @@ class Ping extends Controller
 		$this->today = date( "Y-m-d", time() );
 		$this->all = 1;
 		$this->list = $this->model->getPingAll();
+		$this->section = "all";
 		
 		// load views
 		$this->render();

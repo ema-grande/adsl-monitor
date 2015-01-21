@@ -29,7 +29,13 @@
 		</div>
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li <?php if(isset($this->control) and $this->control == "speed") { ?>class="active"<?php } ?> ><a href="<?php echo URL; ?>speed">ADSL Speed</a></li>
+				<li <?php if(isset($this->control) and $this->control == "speed") { ?>class="active"<?php } ?> role="presentation" class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">ADSL Speed</a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="<?php echo URL; ?>speed">Speed Table</a></li>
+						<li><a href="<?php echo URL; ?>speed/avarage">Avarage Table</a></li>
+					</ul>
+				</li>
 				<li <?php if(isset($this->control) and $this->control == "drop") { ?>class="active"<?php } ?> ><a href="<?php echo URL; ?>drop">ADSL Disconnection</a></li>
 				<li <?php if(isset($this->control) and $this->control == "ping") { ?>class="active"<?php } ?> ><a href="<?php echo URL; ?>ping">ADSL Ping</a></li>
 			</ul>

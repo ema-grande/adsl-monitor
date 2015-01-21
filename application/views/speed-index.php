@@ -60,6 +60,7 @@
 	}
 	if (isset($this->avg)) {
 ?>
+	</tbody>
 		<tr>
 			<td>Avarage</td>
 			<td></td>
@@ -67,7 +68,6 @@
 			<td><?php echo round($this->avg['up'], 2)." Mbit/s" ?></td>
 			<td><?php echo round($this->avg['ping'], 2)." ms" ?></td>
 		</tr><?php } ?>
-	</tbody>
 	</table>
 	<?php if (count($this->list) >= 200){ ?><ul class="pagination paginationBot"></ul><?php } ?>
 	</div>

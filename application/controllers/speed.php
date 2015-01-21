@@ -10,6 +10,7 @@ class Speed extends Controller
 	public $avg;
 	public $control = "speed";
 	public $section;
+	
 	/**
 	 * 
 	 */
@@ -24,9 +25,13 @@ class Speed extends Controller
 	 */
 	public function day($today='')
 	{
+		if ( $today == '' ) {
+			$today = date( "Y-m-d", time() );
+		}
 		$this->today = $today;
-		$this->list = $this->model->getSpeedDate($today);
-		$this->avg = $this->model->getSpeedAvgDay($today);
+		$this->list = $this->model->getSpeedDate($this->today);
+		$this->avg = $this->model->getAvgSpeedDate($this->today);
+		$this->section = "day";
 
 		// load views
 		$this->render();
@@ -40,16 +45,20 @@ class Speed extends Controller
 		$this->today = date( "Y-m-d", time() );
 		$this->all = 1;
 		$this->list = $this->model->getSpeedAll();
+		$this->section = "all";
 		
 		// load views
 		$this->render();
 	}
 
-	public function avarage( $today='')
+	public function avarage($today='')
 	{
+		if ( $today == '' ) {
+			$today = date( "Y-m-d", time() );
+		}
 		$this->today = $today;
-		//$this->list = new StdClass;
-		$this->list->avg = $this->model->getSpeedAvgDay($today);
+		$this->avg = $this->model->getAvgSpeedDate($this->today);
+		$this->section = "avarage";
 
 		// load view
 		$this->render('speed-avg.php');

@@ -1,12 +1,7 @@
 <div class="starter-template">
-	<h2>ADSL Speed</h2>
+	<h2>ADSL Avarage Speed</h2>
 	<!-- <button type="button" class="btn btn-default">Mostra</button> -->
-	<h3>Download speed table <?php if (!isset($this->all)) { echo $this->today." ".date("H:i:s"); }; ?></h3>
-	<div>Telecom Alice 7 mega:
-		<ul>
-			<li>Guaranteed bandwidth <?php echo BB_LIMIT ?> Mbps/s</li>
-			<li>Transmission delay (ping) <?php echo PING_LIMIT ?> ms</li>
-		</ul>
+	<h3>Download avarage speed <?php if (!isset($this->all)) { echo $this->today." ".date("H:i:s"); }; ?></h3>
 	</div>
 	<div id="tab">
 	<?php if (count($this->list) >= 200){ ?><ul class="pagination paginationTop"></ul><?php } ?>
@@ -23,10 +18,10 @@
 	<tbody class="list">
 		<tr>
 			<td class="id"><?php echo "" ?></td>
-			<td class="time"><?php echo htmlspecialchars($this->list->avg['num'], ENT_QUOTES, 'UTF-8');?></td>
-			<td class="dl"><?php echo htmlspecialchars($this->list->avg['dl'], ENT_QUOTES, 'UTF-8');?></td>
-			<td class="up"><?php echo htmlspecialchars($this->list->avg['up'], ENT_QUOTES, 'UTF-8'); ?></td>
-			<td class="ping"><?php echo htmlspecialchars($this->list->avg['ping'], ENT_QUOTES, 'UTF-8');?></td>
+			<td class="time"><?php echo round($this->avg['num'], 2) ?></td>
+			<td class="dl"><?php echo round($this->avg['dl'], 2)." Mbit/s"?></td>
+			<td class="up"><?php echo round($this->avg['up'], 2)." Mbit/s" ?></td>
+			<td class="ping"><?php echo round($this->avg['ping'], 2)." ms" ?></td>
 		</tr>
 	</tbody>
 	</table>

@@ -8,6 +8,8 @@ class Drop extends Controller
 	public $today;
 	public $list;
 	public $control = "drop";
+	public $section;
+
 	/**
 	 * 
 	 */
@@ -25,6 +27,7 @@ class Drop extends Controller
 	{
 		$this->today = $today;
 		$this->list = $this->model->getDropDate($this->today);
+		$this->section = "day";
 		
 		// load views
 		$this->render();
@@ -38,6 +41,7 @@ class Drop extends Controller
 		$this->today = date( "Y-m-d", time() );
 		$this->all = 1;
 		$this->list = $this->model->getDropAll();
+		$this->section = "all";
 		
 		// load views
 		$this->render();
