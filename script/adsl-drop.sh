@@ -39,7 +39,7 @@ do
 			"INSERT INTO $DB_NAME.$PING_TABLE VALUES (NULL, UNIX_TIMESTAMP(NOW()), \"$P\");" 
 	fi
 	
-	# Control over $TARGETs and $CONN_FLAG
+	# Control over $TARGETs and $CONN_FLAG for connection status
 	if [ $PING1 -eq 0 -a $PING2 -eq 0 -a $CONN_FLAG -ne 1 ]
 	then
 		# ADSL up
