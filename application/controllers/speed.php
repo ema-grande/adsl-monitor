@@ -45,6 +45,7 @@ class Speed extends Controller
 		$this->today = date( "Y-m-d", time() );
 		$this->all = 1;
 		$this->list = $this->model->getSpeedAll();
+		$this->avg = $this->model->getAvgSpeedDate("");
 		$this->section = "all";
 		
 		// load views
