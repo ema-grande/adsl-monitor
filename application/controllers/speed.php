@@ -52,14 +52,14 @@ class Speed extends Controller
 		$this->render();
 	}
 
-	public function avarage($today='')
+	public function average($today='')
 	{
 		if ( $today == '' ) {
 			$today = date( "Y-m-d", time() );
 		}
 		$this->today = $today;
 		$this->avg = $this->model->getAvgSpeedDate($this->today);
-		$this->section = "avarage";
+		$this->section = "average";
 
 		// load view
 		$this->render('speed-avg.php');

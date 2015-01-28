@@ -33,7 +33,7 @@
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">ADSL Speed</a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="<?php echo URL; ?>speed">Speed Table</a></li>
-						<li><a href="<?php echo URL; ?>speed/avarage">Avarage Table</a></li>
+						<li><a href="<?php echo URL; ?>speed/average">Avarage Table</a></li>
 					</ul>
 				</li>
 				<li <?php if(isset($this->control) and $this->control == "drop") { ?>class="active"<?php } ?> ><a href="<?php echo URL; ?>drop">ADSL Disconnection</a></li>

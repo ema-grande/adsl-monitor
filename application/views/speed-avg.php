@@ -1,7 +1,7 @@
 <div class="starter-template">
 	<h2>ADSL Avarage Speed</h2>
 	<!-- <button type="button" class="btn btn-default">Mostra</button> -->
-	<h3>Download avarage speed <?php if (!isset($this->all)) { echo $this->today." ".date("H:i:s"); }; ?></h3>
+	<h3>Download average speed <?php if (!isset($this->all)) { echo $this->today." ".date("H:i:s"); }; ?></h3>
 	</div>
 	<div id="tab">
 	<?php if (count($this->list) >= 200){ ?><ul class="pagination paginationTop"></ul><?php } ?>
