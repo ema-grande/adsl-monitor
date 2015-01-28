@@ -12,7 +12,7 @@
 
 	<!-- CSS -->
 	<link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
-	<link rel="stylesheet" href="/libs/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?php echo URL; ?>public/js/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
 	<!-- header -->
