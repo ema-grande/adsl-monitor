@@ -18,7 +18,7 @@ DB_NAME=$(cat $PHP_CONF | grep "DB_NAME" ); DB_NAME=${DB_NAME#*, \'}; DB_NAME=${
 
 TARGET1=8.8.8.8			# target ping Google DNS
 TARGET2=208.67.222.222	# target ping OpenDNS
-REFRESH=2 				# sleep time
+REFRESH=3 				# sleep time
 PING_TOP=800			# TODO: read from /application/conf/conf.php
 PING_OPT="-c1 -W3"		# Send 1 ping wait at least 3 seconds
 
