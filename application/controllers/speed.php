@@ -5,11 +5,12 @@
 */
 class Speed extends Controller
 {
-	public $today;
-	public $list;
-	public $avg;
-	public $control = "speed";
-	public $section;
+	private $today;
+	private $list;
+	private $avg;
+	private $control = "speed";
+	private $section;
+	private $format;
 	
 	/**
 	 * 
@@ -25,8 +26,9 @@ class Speed extends Controller
 	 */
 	public function day($today='')
 	{
+		$this->format = "Y-m-d";
 		if ( $today == '' ) {
-			$today = date( "Y-m-d", time() );
+			$today = date( $this->format, time() );
 		}
 		$this->today = $today;
 		$this->list = $this->model->getSpeedDate($this->today);
@@ -35,6 +37,50 @@ class Speed extends Controller
 
 		// load views
 		$this->render();
+	}
+
+	public function month($today='')
+	{
+		$this->format = "Y-m";
+		if ( $today == '' ) {
+			$today = date( $this->format, time() );
+		}
+		$this->today = $today;
+		$this->list = $this->model->getSpeedDate($this->today);
+		$this->avg = $this->model->getAvgSpeedDate($this->today);
+		$this->section = "month";
+
+		// load views
+		$this->render();
+	}
+
+	public function year($today='')
+	{
+		$this->format = "Y";
+		if ( $today == '' ) {
+			$today = date( $this->format, time() );
+		}
+		$this->today = $today;
+		$this->list = $this->model->getSpeedDate($this->today);
+		$this->avg = $this->model->getAvgSpeedDate($this->today);
+		$this->section = "year";
+
+		// load views
+		$this->render();
+	}
+
+
+	public function average($today='')
+	{
+		if ( $today == '' ) {
+			$today = date( "Y-m-d", time() );
+		}
+		$this->today = $today;
+		$this->avg = $this->model->getAvgSpeedDate($this->today);
+		$this->section = "average";
+
+		// load view
+		$this->render('speed-avg.php');
 	}
 
 	/**
@@ -50,19 +96,6 @@ class Speed extends Controller
 		
 		// load views
 		$this->render();
-	}
-
-	public function average($today='')
-	{
-		if ( $today == '' ) {
-			$today = date( "Y-m-d", time() );
-		}
-		$this->today = $today;
-		$this->avg = $this->model->getAvgSpeedDate($this->today);
-		$this->section = "average";
-
-		// load view
-		$this->render('speed-avg.php');
 	}
 
 	private function render($content='speed-index.php')
