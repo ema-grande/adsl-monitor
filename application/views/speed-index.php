@@ -25,6 +25,16 @@
 			<th class="sort" data-sort="ping">Ping</th>
 		</tr>
 	</thead>
+	<?php if (isset($this->avg)) {?>
+	<tbody>
+		<tr>
+			<td>Avarage</td>
+			<td></td>
+			<td><?php printf("%.2f Mbit/s", $this->avg['dl']); if ( $this->avg['dl'] < BB_LIMIT and $this->avg['dl'] != 0 ) printf('<span class="label label-default">LOW</span>'); ?></td>
+			<td><?php printf("%.2f Mbit/s", $this->avg['up']) ?></td>
+			<td><?php printf("%.0f ms", $this->avg['ping']); if ( $this->avg['ping'] > PING_LIMIT ) printf('<span class="label label-default">HIGH</span>'); ?></td>
+		</tr>
+	</tbody><?php } ?>
 	<tbody class="list">
 <?php
 	$i = 1;
@@ -64,16 +74,6 @@
 			$last = $item->time;
 	} ?>
 	</tbody>
-	<?php if (isset($this->avg)) {?>
-	<tbody>
-		<tr>
-			<td>Avarage</td>
-			<td></td>
-			<td><?php printf("%.2f Mbit/s", $this->avg['dl']); if ( $this->avg['dl'] < BB_LIMIT and $speed != 0 ) printf('<span class="label label-default">LOW</span>'); ?></td>
-			<td><?php printf("%.2f Mbit/s", $this->avg['up']) ?></td>
-			<td><?php printf("%.0f ms", $this->avg['ping']); if ( $this->avg['ping'] > PING_LIMIT ) printf('<span class="label label-default">HIGH</span>'); ?></td>
-		</tr>
-	</tbody><?php } ?>
 	</table>
 	<?php if ($listCount >= 200){ ?><ul class="pagination paginationBot"></ul><?php } ?>
 	</div>
