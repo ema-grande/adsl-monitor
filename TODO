@@ -2,6 +2,7 @@ TODO:
  - Show average speed ping and disconnection time over some time: a day a week a month
  - Show graphics of above
  - More control on $today param
+ - Limit or control if list is huge
 
 DONE:
  + Merge /script/conf and /application/config/config.php

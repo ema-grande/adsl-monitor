@@ -17,8 +17,8 @@
 	</thead>
 	<tbody class="list">
 		<tr>
-			<td class="id"><?php echo "" ?></td>
 			<td class="time"><?php echo round($this->avg['num'], 2) ?></td>
+			<td class="id"><?php echo "" ?></td>
 			<td class="dl"><?php echo round($this->avg['dl'], 2)." Mbit/s"?></td>
 			<td class="up"><?php echo round($this->avg['up'], 2)." Mbit/s" ?></td>
 			<td class="ping"><?php echo round($this->avg['ping'], 2)." ms" ?></td>

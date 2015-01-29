@@ -20,9 +20,9 @@
 	foreach ($this->list as $item) {
 ?>
 		<tr>
-			<td class="id"><?php echo $i ?></td>
-			<td class="time"><?php if (isset($item->time)) echo htmlspecialchars(date("Y-m-d H:i", $item->time), ENT_QUOTES, 'UTF-8'); ?></td>
-			<td class="durata"><?php if (isset($item->durata)) echo htmlspecialchars(gmdate('z H:i:s', $item->durata), ENT_QUOTES, 'UTF-8'); ?></td>
+			<td class="id"><?php printf("%d", $i) ?></td>
+			<td class="time"><?php if (isset($item->time)) printf("%s", htmlspecialchars(date("Y-m-d H:i", $item->time), ENT_QUOTES, 'UTF-8')); ?></td>
+			<td class="durata"><?php if (isset($item->durata)) printf("%s", htmlspecialchars(gmdate("z \d H \h i \m\i\\n s \s\\e\c", $item->durata), ENT_QUOTES, 'UTF-8')); ?></td>
 		</tr>
 <?php
 		$i++;
@@ -33,7 +33,7 @@
 	<tr>
 		<td>Totale durata</td>
 		<td>#################</td>
-		<td><?php echo gmdate("z H:i:s", $secs) ?>*</td>
+		<td><?php printf("%s", gmdate("z \d H \h i \m\i\\n s \s\\e\c", $secs)); ?>*</td>
 	</tr>
 	</table>
 	<?php if (count($this->list) >= 200){ ?><ul class="pagination paginationBot"></ul><?php } ?>

@@ -2,11 +2,11 @@
 <div class="container starter-template">
 	<h2 class="page-header">ADSL Speed</h2>
 	<!-- <button type="button" class="btn btn-default">Mostra</button> -->
-	<h3>Download speed table</h3>
+	<h3>Download speed table for <?php printf("%s", $this->section) ?></h3>
 	<div>Telecom Alice 7 mega:
 		<ul>
-			<li>Guaranteed bandwidth <?php echo BB_LIMIT ?> Mbps/s</li>
-			<li>Transmission delay (ping) <?php echo PING_LIMIT ?> ms</li>
+			<li>Guaranteed bandwidth <?php printf("%.1f", BB_LIMIT) ?> Mbps/s</li>
+			<li>Transmission delay (ping) <?php printf("%d", PING_LIMIT) ?> ms</li>
 		</ul>
 	</div>
 	<div id="tab">
@@ -32,7 +32,7 @@
 		$diff = $now - $item->time;
 ?>
 		<tr>
-			<td class="id"><?php echo $i ?></td>
+			<td class="id"><?php printf("%d", $i) ?></td>
 		<?php if( $diff < 7200 ) { 
 			$diffH = gmdate("H", $diff);
 			$diffMin = gmdate("i", $diff);
@@ -43,17 +43,17 @@
 					( $diffH != "00" ) ? $time = $time . "$diffH h " : $time;
 					( $diffMin != "00" ) ? $time = $time . "$diffMin min " : $time;
 					$time = $time . "$diffSec sec ago";
-					echo $time;
+					printf("%s", $time);
 				} ?></td>
 		<?php } else { ?>
-			<td class="time"><?php if (isset($item->time)) echo htmlspecialchars(date("Y-m-d H:i", $item->time), ENT_QUOTES, 'UTF-8'); ?></td>
+			<td class="time"><?php if (isset($item->time)) printf("%s", htmlspecialchars(date("Y-m-d H:i", $item->time), ENT_QUOTES, 'UTF-8')); ?></td>
 		<?php } ?>
 			<td class="dl"><?php
-				if (isset($item->dl)) echo htmlspecialchars($item->dl, ENT_QUOTES, 'UTF-8');
+				if (isset($item->dl)) printf("%s", htmlspecialchars($item->dl, ENT_QUOTES, 'UTF-8'));
 				if ( $speed < BB_LIMIT and $speed != 0 ) printf('<span class="label label-default">LOW</span>'); ?></td>
-			<td class="up"><?php if (isset($item->up)) echo htmlspecialchars($item->up, ENT_QUOTES, 'UTF-8'); ?></td>
+			<td class="up"><?php if (isset($item->up)) printf("%s", htmlspecialchars($item->up, ENT_QUOTES, 'UTF-8')); ?></td>
 			<td class="ping"><?php
-				if (isset($item->ping)) echo htmlspecialchars($item->ping, ENT_QUOTES, 'UTF-8');
+				if (isset($item->ping)) printf("%s", htmlspecialchars($item->ping, ENT_QUOTES, 'UTF-8'));
 				if ( $p > PING_LIMIT ) printf('<span class="label label-default">HIGH</span>'); ?></td>
 		</tr>
 <?php		$i++;
@@ -65,9 +65,9 @@
 		<tr>
 			<td>Avarage</td>
 			<td></td>
-			<td><?php echo round($this->avg['dl'], 2)." Mbit/s"; if ( $this->avg['dl'] < BB_LIMIT and $speed != 0 ) printf('<span class="label label-default">LOW</span>'); ?></td>
-			<td><?php echo round($this->avg['up'], 2)." Mbit/s" ?></td>
-			<td><?php echo round($this->avg['ping'], 2)." ms"; if ( $this->avg['ping'] > PING_LIMIT ) printf('<span class="label label-default">HIGH</span>'); ?></td>
+			<td><?php printf("%.2f Mbit/s", $this->avg['dl']); if ( $this->avg['dl'] < BB_LIMIT and $speed != 0 ) printf('<span class="label label-default">LOW</span>'); ?></td>
+			<td><?php printf("%.2f Mbit/s", $this->avg['up']) ?></td>
+			<td><?php printf("%.0f ms", $this->avg['ping']); if ( $this->avg['ping'] > PING_LIMIT ) printf('<span class="label label-default">HIGH</span>'); ?></td>
 		</tr>
 	</tbody><?php } ?>
 	</table>
