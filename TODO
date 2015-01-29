@@ -3,6 +3,10 @@ TODO:
  - More control on $today param
  - Limit or control if list is huge
  - Change DROP with "time-start" and "time-end"
+ - URL in view MUST be root/control/section/param1/param2/param3
+ - refactor:
+ 	control.index($year, $month, $day):
+
 
 DONE:
  + Merge /script/conf and /application/config/config.php
