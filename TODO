@@ -1,11 +1,12 @@
 TODO:
- - Show average speed ping and disconnection time over some time: a day a week a month
- - Show graphics of above
+ - Show graphics for average 
  - More control on $today param
  - Limit or control if list is huge
+ - Change DROP with "time-start" and "time-end"
 
 DONE:
  + Merge /script/conf and /application/config/config.php
  + Change datatime to timestamp in database
  + FIXME: check if NAN compromise avg calcolation
+ + Show average speed ping and disconnection time over some time: a day a week a month
  
