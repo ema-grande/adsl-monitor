@@ -17,7 +17,7 @@
 <body>
 	<!-- header -->
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-	<div class="container">
+	<div class="container"> <!-- container -->
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
 			<span class="sr-only">Toggle navigation</span>
@@ -38,7 +38,9 @@
 				</li>
 				<li <?php if(isset($this->control) and $this->control == "drop") { ?>class="active"<?php } ?> ><a href="<?php echo URL; ?>drop">ADSL Disconnection</a></li>
 				<li <?php if(isset($this->control) and $this->control == "ping") { ?>class="active"<?php } ?> ><a href="<?php echo URL; ?>ping">ADSL Ping</a></li>
+				<li><a><?php echo date("D d M Y H:i", time()); ?></a></li>
 			</ul>
 		</div><!--/.nav-collapse -->
+	</div> <!-- /container -->
 	</div>
-	</div>
+	<!-- / header -->

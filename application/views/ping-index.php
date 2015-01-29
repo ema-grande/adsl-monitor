@@ -1,7 +1,8 @@
+<!-- ping -->
 <div class="starter-template">
-	<h2>Ping</h2>
+	<h2 class="page-header">ADSL Ping</h2>
 	<!-- <button type="button" class="btn btn-default">Mostra</button> -->
-	<h3>Ping table <?php if (!isset($this->all)) { echo $this->today." ".date("H:i:s"); }; ?></h3>
+	<h3>Ping table</h3>
 	<div id="tab">
 	<?php if (count($this->list) >= 200){ ?><ul class="pagination paginationTop"></ul><?php } ?>
 	<table class="table">
@@ -51,3 +52,4 @@
 		valueNames: [ 'id', 'time', 'ping' ]
 	};
 </script>
+<!-- / ping -->

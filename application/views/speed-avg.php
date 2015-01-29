@@ -1,8 +1,8 @@
-<div class="starter-template">
-	<h2>ADSL Avarage Speed</h2>
+<!-- speed-avg -->
+<div class="container starter-template">
+	<h2 class="page-header">ADSL Avarage Speed</h2>
 	<!-- <button type="button" class="btn btn-default">Mostra</button> -->
-	<h3>Download average speed <?php if (!isset($this->all)) { echo $this->today." ".date("H:i:s"); }; ?></h3>
-	</div>
+	<h3>Download average speed</h3>
 	<div id="tab">
 	<?php if (count($this->list) >= 200){ ?><ul class="pagination paginationTop"></ul><?php } ?>
 	<table class="table">
@@ -28,8 +28,10 @@
 	<?php if (count($this->list) >= 200){ ?><ul class="pagination paginationBot"></ul><?php } ?>
 	</div>
 </div>
+</div>
 <script>
 	var options = {
 		valueNames: [ 'id', 'time', 'dl', 'up', 'ping' ]
 	};
 </script>
+<!-- / speed-avg -->

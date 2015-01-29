@@ -1,7 +1,8 @@
-<div class="starter-template">
-	<h2>ADSL Speed</h2>
+<!-- speed-index -->
+<div class="container starter-template">
+	<h2 class="page-header">ADSL Speed</h2>
 	<!-- <button type="button" class="btn btn-default">Mostra</button> -->
-	<h3>Download speed table <?php if (!isset($this->all)) { echo $this->today." ".date("H:i:s"); }; ?></h3>
+	<h3>Download speed table</h3>
 	<div>Telecom Alice 7 mega:
 		<ul>
 			<li>Guaranteed bandwidth <?php echo BB_LIMIT ?> Mbps/s</li>
@@ -57,17 +58,18 @@
 		</tr>
 <?php		$i++;
 			$last = $item->time;
-	}
-	if (isset($this->avg)) {
-?>
+	} ?>
 	</tbody>
+	<?php if (isset($this->avg)) {?>
+	<tbody>
 		<tr>
 			<td>Avarage</td>
 			<td></td>
-			<td><?php echo round($this->avg['dl'], 2)." Mbit/s" ?></td>
+			<td><?php echo round($this->avg['dl'], 2)." Mbit/s"; if ( $this->avg['dl'] < BB_LIMIT and $speed != 0 ) printf('<span class="label label-default">LOW</span>'); ?></td>
 			<td><?php echo round($this->avg['up'], 2)." Mbit/s" ?></td>
-			<td><?php echo round($this->avg['ping'], 2)." ms" ?></td>
-		</tr><?php } ?>
+			<td><?php echo round($this->avg['ping'], 2)." ms"; if ( $this->avg['ping'] > PING_LIMIT ) printf('<span class="label label-default">HIGH</span>'); ?></td>
+		</tr>
+	</tbody><?php } ?>
 	</table>
 	<?php if (count($this->list) >= 200){ ?><ul class="pagination paginationBot"></ul><?php } ?>
 	</div>
@@ -77,3 +79,4 @@
 		valueNames: [ 'id', 'time', 'dl', 'up', 'ping' ]
 	};
 </script>
+<!-- / speed-index -->

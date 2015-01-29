@@ -4,7 +4,9 @@
 	$discDiff = $now - $listDrop[0]->time;
 	$pingDiff = $now - $listPing[0]->time;
 	$format = "z \d H \h i \m\i\\n s \s\\e\c"
-?><br/>
+?>
+<!-- index -->
+<br/>
 <div class="container starter-template">
 	<div class="panel panel-default">
 		<div class="panel-heading">Latest <a href="<?php echo URL; ?>speed">speed</a> test</div>
@@ -32,3 +34,4 @@
 		</div>
 	</div>
 </div>
+<!-- /index -->
