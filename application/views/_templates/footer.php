@@ -1,7 +1,7 @@
 <!-- footer -->
 <div style="margin-bottom: 50px;"></div>
 <div class="navbar navbar-default navbar-fixed-bottom">
-	<p class="navbar-text">&copy; <?php echo date("Y", time()); ?></p>
+	<p class="text-center">All right reserved &copy; <?php echo date("Y", time()); ?></p>
 </div>
 <!-- define the project's URL (to make AJAX calls possible, even when using this in sub-folders etc) -->
 <script>

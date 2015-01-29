@@ -2,7 +2,7 @@
 <div class="container starter-template">
 	<h2 class="page-header">ADSL Speed</h2>
 	<!-- <button type="button" class="btn btn-default">Mostra</button> -->
-	<h3>Download speed table for <?php printf("%s", $this->section) ?></h3>
+	<h3>Download speed table for <?php printf("%s %s", $this->section, $this->today) ?></h3>
 	<div>Telecom Alice 7 mega:
 		<ul>
 			<li>Guaranteed bandwidth <?php printf("%.1f", BB_LIMIT) ?> Mbps/s</li>

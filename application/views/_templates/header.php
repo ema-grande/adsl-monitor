@@ -29,8 +29,8 @@
 		</div>
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li <?php if(isset($this->control) and $this->control == "speed") { ?>class="active"<?php } ?> role="presentation" class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">ADSL Speed</a>
+				<li class="dropdown<?php if(isset($this->control) and $this->control == "speed") { ?> active<?php } ?>" role="presentation">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">ADSL Speed &downarrow;</a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="<?php echo URL; ?>speed">Speed Table</a></li>
 						<li><a href="<?php echo URL; ?>speed/average">Avarage Table</a></li>
