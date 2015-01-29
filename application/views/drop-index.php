@@ -1,5 +1,5 @@
 <!-- drop -->
-<div class="starter-template">
+<div class="container starter-template">
 	<h2 class="page-header">ADSL Disconnetions</h2>
 	<!-- <button type="button" class="btn btn-default">Mostra</button> -->
 	<h3>Disconnetion table</h3>
