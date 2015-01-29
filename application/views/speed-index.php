@@ -9,8 +9,12 @@
 			<li>Transmission delay (ping) <?php printf("%d", PING_LIMIT) ?> ms</li>
 		</ul>
 	</div>
+<?php
+	$listCount = count($this->list);
+	if ( $listCount != 0 ) {
+?>
 	<div id="tab">
-	<?php if (count($this->list) >= 200){ ?><ul class="pagination paginationTop"></ul><?php } ?>
+	<?php if ($listCount >= 200){ ?><ul class="pagination paginationTop"></ul><?php } ?>
 	<table class="table">
 	<thead>
 		<tr>
@@ -71,8 +75,11 @@
 		</tr>
 	</tbody><?php } ?>
 	</table>
-	<?php if (count($this->list) >= 200){ ?><ul class="pagination paginationBot"></ul><?php } ?>
+	<?php if ($listCount >= 200){ ?><ul class="pagination paginationBot"></ul><?php } ?>
 	</div>
+<?php } else { ?>
+	<div class="alert-warning">TODO: Empty selection!</div>
+<?php } ?>
 </div>
 <script>
 	var options = {

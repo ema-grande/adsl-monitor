@@ -3,8 +3,12 @@
 	<h2 class="page-header">ADSL Disconnetions</h2>
 	<!-- <button type="button" class="btn btn-default">Mostra</button> -->
 	<h3>Disconnetion table</h3>
+<?php
+	$listCount = count($this->list);
+	if ( $listCount != 0 ) {
+?>
 	<div id="tab">
-	<?php if (count($this->list) >= 200){ ?><ul class="pagination paginationTop"></ul><?php } ?>
+	<?php if ($listCount >= 200){ ?><ul class="pagination paginationTop"></ul><?php } ?>
 	<table class="table">
 	<thead>
 		<tr>
@@ -36,9 +40,12 @@
 		<td><?php printf("%s", gmdate("z \d H \h i \m\i\\n s \s\\e\c", $secs)); ?>*</td>
 	</tr>
 	</table>
-	<?php if (count($this->list) >= 200){ ?><ul class="pagination paginationBot"></ul><?php } ?>
+	<?php if ($listCount >= 200){ ?><ul class="pagination paginationBot"></ul><?php } ?>
 	</div>
 	<p class="text-right"><small>* days hours:minutes:seconds</small></p>
+<?php } else { ?>
+	<div class="alert-warning">TODO: Empty selection!</div>
+<?php } ?>
 </div>
 <script>
 	var options = {
