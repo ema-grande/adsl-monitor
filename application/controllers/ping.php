@@ -5,10 +5,11 @@
 */
 class Ping extends Controller
 {
-	public $today;
-	public $list;
-	public $control = "ping";
-	public $section;
+	private $today;
+	private $list;
+	private $control = "ping";
+	private $section;
+	private $format;
 
 	/**
 	 * 
@@ -25,6 +26,10 @@ class Ping extends Controller
 	 */
 	public function day($today='')
 	{
+		$this->format = "Y-m-d";
+		if ( $today == '' ) {
+			$today = date( $this->format, time() );
+		}
 		$this->today = $today;
 		$this->list = $this->model->getPingDate($this->today);
 		$this->section = "day";
@@ -51,9 +56,9 @@ class Ping extends Controller
 	{
 		// load views
 		require APP . 'views/_templates/header.php';
-		require APP . 'views/_templates/nav-t.php';
+		require APP . 'views/_templates/nav.php';
 		require APP . 'views/ping-index.php';
-		require APP . 'views/_templates/nav-b.php';
+		require APP . 'views/_templates/nav.php';
 		require APP . 'views/_templates/footer.php';
 	}
 }

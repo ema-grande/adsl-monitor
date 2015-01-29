@@ -102,9 +102,9 @@ class Speed extends Controller
 	{
 		// load views
 		require APP . 'views/_templates/header.php';
-		require APP . 'views/_templates/nav-t.php';
+		require APP . 'views/_templates/nav.php';
 		require APP . 'views/'.$content;
-		require APP . 'views/_templates/nav-b.php';
+		require APP . 'views/_templates/nav.php';
 		require APP . 'views/_templates/footer.php';
 	}
 }
