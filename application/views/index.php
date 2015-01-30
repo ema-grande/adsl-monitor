@@ -22,7 +22,7 @@
 		<div class="panel-heading">Latest <a href="<?php echo URL; ?>drop">disconnection</a></div>
 		<div class="panel-body">
 			Latest disconnection result <strong><?php echo gmdate($format, $discDiff) ?></strong> ago,
-			last for <strong><?php echo gmdate('H:i:s', $listDrop[0]->durata); ?></strong>,
+			last for <strong><?php echo gmdate($format, $listDrop[0]->durata); ?></strong>,
 		</div>
 	</div>
 	

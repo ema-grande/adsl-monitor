@@ -29,9 +29,9 @@
 		</div>
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li <?php if(isset($this->control) and $this->control == "speed") { ?>class="active"<?php } ?> ><a href="<?php echo URL; ?>speed">ADSL Speed</a></li>
-				<li <?php if(isset($this->control) and $this->control == "drop") { ?>class="active"<?php } ?> ><a href="<?php echo URL; ?>drop">ADSL Disconnection</a></li>
-				<li <?php if(isset($this->control) and $this->control == "ping") { ?>class="active"<?php } ?> ><a href="<?php echo URL; ?>ping">ADSL Ping</a></li>
+				<li<?php if(isset($this->control) and $this->control == "speed") { ?> class="active"<?php } ?>><a href="<?php echo URL; ?>speed">ADSL Speed</a></li>
+				<li<?php if(isset($this->control) and $this->control == "drop") { ?> class="active"<?php } ?>><a href="<?php echo URL; ?>drop">ADSL Disconnection</a></li>
+				<li<?php if(isset($this->control) and $this->control == "ping") { ?> class="active"<?php } ?>><a href="<?php echo URL; ?>ping">ADSL Ping</a></li>
 				<li><a><?php echo date("D d M Y H:i", time()); ?></a></li>
 			</ul>
 		</div><!--/.nav-collapse -->
