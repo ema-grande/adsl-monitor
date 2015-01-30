@@ -17,18 +17,15 @@ class Model
 		} catch (PDOException $e) {
 			exit('Database connection could not be established.');
 		}
-
-		$today = date( "Y-m-d", time() );
-		//$today = time();
 	}
 
 	/**
-	 * @param String $today "%Y-%m-%d" date representation
+	 * @param String $time "%Y-%m-%d" date representation
 	 * @return array Returns an array containing all of the result set rows 
 	 */
-	public function getSpeedDate( $today )
+	public function getSpeedDate( $time )
 	{
-		$sql= "SELECT * FROM $this->speedTable WHERE FROM_UNIXTIME(time,'%Y-%m-%d') LIKE \"%$today%\" ORDER BY ID DESC;";
+		$sql= "SELECT * FROM $this->speedTable WHERE FROM_UNIXTIME(time,'%Y-%m-%d') LIKE \"%$time%\" ORDER BY ID DESC;";
 		$query = $this->db->prepare($sql);
 		$query->execute();
 
@@ -54,42 +51,47 @@ class Model
 	}
 
 	/**
-	 * @param String $today "%Y-%m-%d" date representation
+	 * @param String $time "%Y-%m-%d" date representation
 	 * @param String $format "%Y" | "%Y-%m" | "%Y-%m-%d"
-	 * @return 
+	 * @return stdClass $avg - float $dl, float $up, float $ping
+	 * 
 	 */
-	public function getAvgSpeedDate( $today )
+	public function getAvgSpeedDate( $time )
 	{
-		$sql = "SELECT * FROM $this->speedTable WHERE FROM_UNIXTIME(time, '%Y-%m-%d') LIKE \"%$today%\"";
+		$avg = new stdClass;
+		$sql = "SELECT * FROM $this->speedTable WHERE FROM_UNIXTIME(time, '%Y-%m-%d') LIKE \"%$time%\"";
 		$query = $this->db->prepare($sql);
 		$query->execute();
 		$list = $query->fetchAll();
-		$avg["num"] = count($list);
-		if ($avg['num'] == 0) return;
+		$listCount = count($list);
+		
+		if ( $listCount == 0 ) return;
 
-		$avg["dl"] = 0.0;
-		$avg["up"] = 0.0;
-		$avg["ping"] = 0.0;
+		$avg->dl = 0.0;
+		$avg->up = 0.0;
+		$avg->ping = 0.0;
+		$pingCount = $listCount + 1; /* to avoid div by 0 */
 		
 		foreach ($list as $item) {
-			$avg["dl"] += (float)$item->dl;
-			$avg["up"] += (float)$item->up;
-			$avg["ping"] += (float)$item->ping;
+			$avg->dl += (float)$item->dl;
+			$avg->up += (float)$item->up;
+			$avg->ping += (float)$item->ping;
+			if ($item->ping == "NAN") { $pingCount -= 1; }
 		}
-		$avg["dl"] /= $avg["num"];
-		$avg["up"] /= $avg["num"];
-		$avg["ping"] /= $avg["num"];
+		$avg->dl /= $listCount;
+		$avg->up /= $listCount;
+		$avg->ping /= $pingCount;
 
 		return $avg;
 	}
 
 	/**
-	 * @param String $today "%Y-%m-%d" date representation
+	 * @param String $time "%Y-%m-%d" date representation
 	 * @return array Returns an array containing all of the result set rows 
 	 */
-	public function getPingDate( $today )
+	public function getPingDate( $time )
 	{
-		$sql= "SELECT * FROM $this->pingTable WHERE FROM_UNIXTIME(time,'%Y-%m-%d') LIKE \"%$today%\" ORDER BY ID DESC;";
+		$sql= "SELECT * FROM $this->pingTable WHERE FROM_UNIXTIME(time,'%Y-%m-%d') LIKE \"%$time%\" ORDER BY ID DESC;";
 		$query = $this->db->prepare($sql);
 		$query->execute();
 
@@ -115,12 +117,12 @@ class Model
 	}
 
 	/**
-	 * @param String $today "%Y-%m-%d" date representation
+	 * @param String $time "%Y-%m-%d" date representation
 	 * @return array Returns an array containing all of the result set rows 
 	 */
-	public function getDropDate( $today )
+	public function getDropDate( $time )
 	{
-		$sql= "SELECT * FROM $this->dropTable WHERE FROM_UNIXTIME(time,'%Y-%m-%d') LIKE \"%$today%\" ORDER BY ID DESC;";
+		$sql= "SELECT * FROM $this->dropTable WHERE FROM_UNIXTIME(time,'%Y-%m-%d') LIKE \"%$time%\" ORDER BY ID DESC;";
 		$query = $this->db->prepare($sql);
 		$query->execute();
 
