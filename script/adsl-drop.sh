@@ -30,13 +30,14 @@ do
 	# $TARGETs reachbale? test ping delay
 	if [ $PING1 -eq 0 -a $PING2 -eq 0 ]; then
 		# Record ping if higher then some top latency
-		P1=$(echo $P1 | grep -e "time=[0-9]" | sed 's/.*time=//g' | sed 's/ --- .*//g')
-		P2=$(echo $P2 | grep -e "time=[0-9]" | sed 's/.*time=//g' | sed 's/ --- .*//g')
+		P1=$(echo $P1 | grep -e "time=[0-9]" | sed 's/.*time=//g' | sed 's/ ms --- .*//g')
+		P2=$(echo $P2 | grep -e "time=[0-9]" | sed 's/.*time=//g' | sed 's/ ms --- .*//g')
 		P_INT=$(echo $P1 | cut -d"." -f1)
+
 		# FIXME: some error may occur if ping fail "integer expression expected"
 		# this should be fixed
 		[[ $P_INT -gt $PING_TOP ]] && mysql -h $DB_HOST -u $DB_USER -e \
-			"INSERT INTO $DB_NAME.$PING_TABLE VALUES (NULL, UNIX_TIMESTAMP(NOW()), \"$P\");" 
+			"INSERT INTO $DB_NAME.$PING_TABLE VALUES (NULL, UNIX_TIMESTAMP(NOW()), \"$P1 ms\");"
 	fi
 	
 	# Control over $TARGETs and $CONN_FLAG for connection status
