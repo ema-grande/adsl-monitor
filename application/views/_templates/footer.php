@@ -1,8 +1,9 @@
 <!-- footer -->
-<div style="margin-bottom: 50px;"></div>
-<div class="navbar navbar-default navbar-fixed-bottom">
-	<p class="text-center">All right reserved &copy; <?php echo date("Y", time()); ?></p>
-</div>
+<footer class="footer">
+	<div class="container">
+		<p class="text-center">All right reserved &copy; <?php echo date("Y", time()); ?></p>
+	</div>
+</footer>
 <!-- define the project's URL (to make AJAX calls possible, even when using this in sub-folders etc) -->
 <script>
 	var url = "<?php echo URL; ?>";
@@ -32,9 +33,12 @@
 		ListPagination(paginationTopOpt),
 		ListPagination(paginationBotOpt)
 	];
-	var contactList = new List('tab', options);
+	
 </script>
 <?php } ?>
+<script>
+	var contactList = new List('tab', options);
+</script>
 <!-- / footer -->
 </body>
 </html>

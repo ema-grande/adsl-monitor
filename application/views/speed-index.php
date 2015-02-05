@@ -2,7 +2,7 @@
 <div class="container starter-template">
 	<h2 class="page-header">ADSL Speed</h2>
 	<!-- <button type="button" class="btn btn-default">Mostra</button> -->
-	<h3>Download speed table for <?php printf("%s %s", $this->section, $this->today) ?></h3>
+	<h3>Download speed table<?php printf(" for %s %s", $this->section, $this->today) ?></h3>
 	<div>Telecom Alice 7 mega:
 		<ul>
 			<li>Guaranteed bandwidth <?php printf("%.1f", BB_LIMIT) ?> Mbps/s</li>
@@ -78,7 +78,11 @@
 	<?php if ($listCount >= 200){ ?><ul class="pagination paginationBot"></ul><?php } ?>
 	</div>
 <?php } else { ?>
-	<div class="alert-warning">TODO: Empty selection!</div>
+	<div class="alert alert-warning" role="alert">
+		<span class="glyphicon glyphicon-alert"></span>
+		<span class="sr-only">Warning:</span>
+		Nothing to show here!
+	</div>
 <?php } ?>
 </div>
 <script>

@@ -2,7 +2,7 @@
 <div class="container starter-template">
 	<h2 class="page-header">ADSL Ping</h2>
 	<!-- <button type="button" class="btn btn-default">Mostra</button> -->
-	<h3>Ping table</h3>
+	<h3>Ping table<?php printf(" for %s %s", $this->section, $this->today) ?></h3>
 <?php
 	$listCount = count($this->list);
 	if ( $listCount != 0 ) {
@@ -51,7 +51,11 @@
 	<?php if ($listCount >= 200){ ?><ul class="pagination paginationBot"></ul><?php } ?>
 	</div>
 <?php } else { ?>
-	<div class="alert-warning">TODO: Empty selection!</div>
+	<div class="alert alert-warning" role="alert">
+		<span class="glyphicon glyphicon-alert"></span>
+		<span class="sr-only">Warning:</span>
+		Nothing to show here!
+	</div>
 <?php } ?>
 </div>
 <script>
